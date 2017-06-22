@@ -3,14 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Bowen He&#39;s Blog</title>
+  <title>leetcode/lintcode刷题系－Sliding Window Median | Bowen He&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Bowen He&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="Sliding Window MedianQuestion: Given an array of n integer, and a moving window(size k), move the window at each iteration from the start of the array, find the median of the element inside the window">
+<meta name="keywords" content="leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode&#x2F;lintcode刷题系－Sliding Window Median">
+<meta property="og:url" content="http://yoursite.com/2017/06/22/Sliding Window Median/index.html">
 <meta property="og:site_name" content="Bowen He&#39;s Blog">
+<meta property="og:description" content="Sliding Window MedianQuestion: Given an array of n integer, and a moving window(size k), move the window at each iteration from the start of the array, find the median of the element inside the window">
+<meta property="og:updated_time" content="2017-06-22T22:51:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Bowen He&#39;s Blog">
+<meta name="twitter:title" content="leetcode&#x2F;lintcode刷题系－Sliding Window Median">
+<meta name="twitter:description" content="Sliding Window MedianQuestion: Given an array of n integer, and a moving window(size k), move the window at each iteration from the start of the array, find the median of the element inside the window">
   
     <link rel="alternate" href="/atom.xml" title="Bowen He&#39;s Blog" type="application/atom+xml">
   
@@ -63,9 +68,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Sliding Window Median" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Sliding Window Median" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/06/22/Sliding Window Median/" class="article-date">
   <time datetime="2017-06-22T22:51:00.000Z" itemprop="datePublished">2017-06-22</time>
@@ -78,8 +81,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/22/Sliding Window Median/">leetcode/lintcode刷题系－Sliding Window Median</a>
+    <h1 class="article-title" itemprop="name">
+      leetcode/lintcode刷题系－Sliding Window Median
     </h1>
   
 
@@ -194,189 +197,19 @@ class Node implements Comparable&lt;Node&gt;{
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-爬虫中遇到的登录login和form" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/06/21/爬虫中遇到的登录login和form/" class="article-date">
-  <time datetime="2017-06-22T06:21:57.000Z" itemprop="datePublished">2017-06-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/21/爬虫中遇到的登录login和form/">爬虫中关于登录网页，文件上传的一些笔记</a>
-    </h1>
+    <a href="/2017/06/21/爬虫中遇到的登录login和form/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">爬虫中关于登录网页，文件上传的一些笔记</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="爬虫中遇到的登录login和form"><a href="#爬虫中遇到的登录login和form" class="headerlink" title="爬虫中遇到的登录login和form"></a>爬虫中遇到的登录login和form</h3><p>大多数web form都是由一些HTML field, submit button, 以及一个”action” page，即form真正被处理的地方，共同组成。举例说明，以下为一个最基本的web form:<a href="">http://pythonscraping.com/pages/files/form.html</a>, 可以用chrome浏览器，view-developer-source code查看html代码。</p>
-<p>通过查看代码，要注意两点：</p>
-<ul>
-<li>[ ] 两个input field的名字是firstname和last name， 这两个名字是我们一会儿要POST到server去的。</li>
-<li>[ ] 这里处理form的文件是processing.php，也是我们一会要传送的。</li>
-</ul>
-<p>怎么在爬虫中完成登录，在这里介绍python的Request library，非常简单的代码：</p>
-<p>`import requests</p>
-<p>params = {‘firstname’: ‘Ryan’, ‘lastname’: ‘Mitchell’}<br>r = requests.post(“<a href="http://pythonscraping.com/files/processing.php" target="_blank" rel="external">http://pythonscraping.com/files/processing.php</a>“, data = params)<br>print(r.text)`</p>
-<p>当然，这里的例子用的form很简单，但是当面对登录页面复杂的HTML代码时，我们也不用过于紧张，我们只需要寻找两类：</p>
-<ul>
-<li>[ ] 想要提交的数据的field的名字, 比如上面例子的firstname和lastname。</li>
-<li>[ ] 真正处理form的action page。</li>
-</ul>
-<h3 id="爬虫中遇到的Radio-Buttons-Checkboxes和其他输入"><a href="#爬虫中遇到的Radio-Buttons-Checkboxes和其他输入" class="headerlink" title="爬虫中遇到的Radio Buttons, Checkboxes和其他输入"></a>爬虫中遇到的Radio Buttons, Checkboxes和其他输入</h3><p>标准HTML文件包含了很多可能的form input fields，比如radio buttons, checkboxes, select boxes, 在 HTML5中，还有emails, dates等等，尽管登录页面代码看着很复杂，但我们要集中查找以上谈过的两类：</p>
-<ul>
-<li>[ ] 想要提交的数据的field的名字, 比如上面例子的firstname和lastname。</li>
-<li>[ ] 真正处理form的action page。</li>
-</ul>
-<p>有一种非常便捷的方法查看GET REQUESTS， 就是查看这个site的url，举例说明：假设url长这样<a href="">http: //domainname.com?thing1=foo&amp;thing2=bar</a>。</p>
-<h3 id="上传文件和图片"><a href="#上传文件和图片" class="headerlink" title="上传文件和图片"></a>上传文件和图片</h3><p>举例说明操作吧，<a href="https://www.pythonscraping.com/files/form2.html，" target="_blank" rel="external">https://www.pythonscraping.com/files/form2.html，</a> 查看其source code后，我们发现和第一个例子的source code很像，不同点在于这里的<input> type是file，代码如下：</p>
-<p>`import requests</p>
-<p>files = {‘uploadFile’: open(‘.,/files/pic.png’, ‘rb’)}<br>r =requests(“<a href="https://www.pythonscraping.com/pages/processing2.php" target="_blank" rel="external">https://www.pythonscraping.com/pages/processing2.php</a>“, files=files)<br>print(r.text)`</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/21/爬虫中遇到的登录login和form/" data-id="cj490vtks0004e9sadg95bb6v" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-leetcode:lintcode刷题系－Trapping Rain Water 类问题的分析" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/06/21/leetcode:lintcode刷题系－Trapping Rain Water 类问题的分析/" class="article-date">
-  <time datetime="2017-06-21T21:20:00.000Z" itemprop="datePublished">2017-06-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/21/leetcode:lintcode刷题系－Trapping Rain Water 类问题的分析/">leetcode/lintcode刷题系－Trapping Rain Water 类问题的分析</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Trapping Rain Water: Given <em>n</em> non-negative integers representing an elevation map where the width of each bar is <code>1</code>, compute how much water it is able to trap after raining.</p>
-<p><strong>Example</strong>: Given <code>[0,1,0,2,1,0,1,3,2,1,2,1]</code>, return <code>6</code>.</p>
-<p><a href="http://www.lintcode.com/en/problem/trapping-rain-water/" target="_blank" rel="external"></a></p>
-<p>对于这道灌水题，因为水只有在凹槽中才能储存，因此可以用左右两个指针，一个指着array最左端，一个指着array最右端，分别标记此时左右两端的高度lheight, rheight, <u>取两个值中的较小值，假设是lheight，这个高度便是我们的“灌水基调”，使这个bar的指针往中间移动，，指向下一个bar，当下一个bar高度小于当前“灌水基调”，那么这个位置是可以储存住水的，两者高度差就是灌水量，而若下一个bar高度大于当前”灌水基调“，那么我们更新lheight为当前bar的高度</u>，进入下一次循环，划线部分重复，直到左右指针相交。</p>
-<p>`</p>
-<pre><code>public class Solution {
-/**
- * @param heights: an array of integers
- * @return: a integer
- */
-public int trapRainWater(int[] heights) {
-    // write your code here
-    /* check if input is valid */
-    int left = 0, right = heights.length-1, res = 0;
-    if(heights == null || heights.length == 0){
-        return res;
-    }
-
-    int leftHeight = heights[left];
-    int rightHeight = heights[right];
-    while(left &lt; right){
-        if(leftHeight &lt; rightHeight){
-            left++;
-            if(heights[left] &lt; leftHeight){
-                res += leftHeight-heights[left];
-            }else{
-                leftHeight = heights[left];
-            }
-        }else{
-            right--;
-            if(heights[right] &lt; rightHeight){
-                res += rightHeight-heights[right];
-            }else{
-                rightHeight = heights[right];
-            }
-        }
-    }
-
-    return res;
-}
-</code></pre><p>`</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/21/leetcode:lintcode刷题系－Trapping Rain Water 类问题的分析/" data-id="cj490vtkf0000e9saxcrr7uon" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-first-one" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/06/12/first-one/" class="article-date">
-  <time datetime="2017-06-12T22:52:57.000Z" itemprop="datePublished">2017-06-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/12/first-one/">Hello!</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>开博客啦！</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/12/first-one/" data-id="cj490vtkq0003e9sa1kdke11r" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 </section>
         
