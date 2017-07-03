@@ -54,7 +54,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -65,88 +65,29 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-一些在爬虫中用到的python tricks" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/06/25/一些在爬虫中用到的python tricks/" class="article-date">
-  <time datetime="2017-06-25T23:37:36.000Z" itemprop="datePublished">2017-06-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>-–</p>
-<p>title: 爬虫笔记4</p>
-<p>date: 2017-06-2 16:50:00</p>
-<p>tags: 爬虫</p>
-<p>-–</p>
-<h3 id="一些在爬虫中用到的python-tricks"><a href="#一些在爬虫中用到的python-tricks" class="headerlink" title="一些在爬虫中用到的python tricks"></a>一些在爬虫中用到的python tricks</h3><p><em>string.strip([c])</em></p>
-<p>//This method returns a copy of the string in which all chars have been stripped from the beginning and the end of the string.</p>
-<p>返回一个string，是原string的copy但删除了所有的c字符。</p>
-<p>Reference: <a href="https://www.tutorialspoint.com/python/string_strip.htm" target="_blank" rel="external">https://www.tutorialspoint.com/python/string_strip.htm</a></p>
-<p><code>.strip()</code> removes <em>all</em> whitespace at the start and end, including spaces, tabs, newlines and carriage returns. </p>
-<p>Reference: <a href="https://stackoverflow.com/questions/13013734/string-strip-in-python" target="_blank" rel="external">https://stackoverflow.com/questions/13013734/string-strip-in-python</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">str.split(str=&quot;&quot;, num=number)</div></pre></td></tr></table></figure>
-<p>//str是分隔符，默认是space</p>
-<p>举例说明吧，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">str = &quot;Line1-abcdef \nLine2-abc \nLine4-abcd&quot;;</div><div class="line">print str.split( )</div><div class="line">print str.split(&apos; &apos;, 1 )</div></pre></td></tr></table></figure>
-<p>结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[&apos;Line1-abcdef&apos;, &apos;Line2-abc&apos;, &apos;Line4-abcd&apos;]</div><div class="line">[&apos;Line1-abcdef&apos;, &apos;\nLine2-abc \nLine4-abcd&apos;]</div></pre></td></tr></table></figure>
-<p>Reference: <a href="https://www.tutorialspoint.com/python/string_split.htm" target="_blank" rel="external">https://www.tutorialspoint.com/python/string_split.htm</a></p>
-<h3 id="Unicode"><a href="#Unicode" class="headerlink" title="Unicode"></a>Unicode</h3><p> A character is <strong>not, not, not</strong> a byte.  a character is the platonic ideal of the smallest unit of textA.  character encoding defines a mapping between our platonic characters and some way of representing them as bytes. Because there are <u>many ways of representing the same character</u> as bytes, this means that if you have a series of bytes, but do not know their encoding - even if you know the data is textual - the data is meaningless. First thing before everything, is knowing the encoding.</p>
-<p>In python, there are three distict string types:</p>
-<ol>
-<li>‘unicode’, which represents unicode strings (text strings).</li>
-<li>‘str’, which represents byte strings (binary data).</li>
-<li>‘basestring’, which acts as a parent class for both of the other string types.</li>
-</ol>
-<p>Conversion between the two types is meaningless without an encoding, Python relies on a ‘default encoding’, specified by sys.setdefaultencoding().</p>
-<p>Simply set encoding with function <code>sys.setdefaultencoding()</code> is a solution but may not that good, since the web may use multiple different text encoding.  </p>
-<p>Here is a correction solution, referenced from: <a href="http://blog.notdot.net/2010/07/Getting-unicode-right-in-Python" target="_blank" rel="external">http://blog.notdot.net/2010/07/Getting-unicode-right-in-Python</a></p>
-<ul>
-<li>All <u>text strings</u>, everywhere should be of type unicode, not str. If you’re handling text, and your variable is a str, it’s a bug!</li>
-<li>To decode a byte string as text, use var.decode(encoding) (eg, <code>var.decode(&#39;utf-8&#39;)</code>, with the correct encoding. To encode a text string as bytes, use <code>var.encode(encoding)</code>.</li>
-<li>Never ever use <code>str()</code> on a unicode string, or <code>unicode()</code> on a byte string without a second argument specifying the encoding.</li>
-<li>Whenever you read data from outside your app, expect it to be bytes - eg, of type str - and call .decode() on it to interpret it as text. Likewise, always call .encode() on text you want to send to the outside world.</li>
-<li>If a string literal in your code is intended to represent text, it should always be prefixed with ‘u’. In fact, you probably never want to define a raw string literal in your code at all. For what it’s worth, though, I’m terrible at this one, as I’m sure pretty much everyone else is, too.</li>
-</ul>
-<p>Usually in python 2, for a web crawler python file, I see a lot:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">reload(sys)</div><div class="line">sys.setdefaulyencoding(&apos;utf8&apos;)</div></pre></td></tr></table></figure>
-<p>But in python3, default is UTF-8 already. No point to write this again.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/25/一些在爬虫中用到的python tricks/" data-id="cj4ddblzj0009mksa0nb87r2w" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-Avoid Scraper Trapper" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/06/25/Avoid Scraper Trapper/" class="article-date">
-  <time datetime="2017-06-25T08:04:06.000Z" itemprop="datePublished">2017-06-25</time>
+  <time datetime="2017-06-25T08:45:57.000Z" itemprop="datePublished">2017-06-25</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/25/Avoid Scraper Trapper/">爬虫笔记3</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>-–</p>
-<p>title: 爬虫笔记3</p>
-<p>date: 2017-06-25 16:45:57</p>
-<p>tags: 爬虫</p>
-<p>-–</p>
-<h3 id="Avoid-Scraper-Trapper"><a href="#Avoid-Scraper-Trapper" class="headerlink" title="Avoid Scraper Trapper"></a>Avoid Scraper Trapper</h3><p>requests library enables use to handle form on website, is algo good at setting headers. HTTP headers contains attributes, preferences, sent by you every time you make a request to server. </p>
+        <h3 id="Avoid-Scraper-Trapper"><a href="#Avoid-Scraper-Trapper" class="headerlink" title="Avoid Scraper Trapper"></a>Avoid Scraper Trapper</h3><p>requests library enables use to handle form on website, is algo good at setting headers. HTTP headers contains attributes, preferences, sent by you every time you make a request to server. </p>
 <p>Header used by a typical Python scraper using the default url lib library might send:</p>
 <p>Accept-Encoding: identity</p>
 <p>User-Agent: Python-urllib/3.4</p>
@@ -169,9 +110,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/25/Avoid Scraper Trapper/" data-id="cj4ddblyw0000mksayg81f926" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/06/25/Avoid Scraper Trapper/" data-id="cj4ntqqsh0000qksa6x8scb3w" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
+
     </footer>
   </div>
   
@@ -182,7 +125,7 @@
     <article id="post-handling redirects" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/06/24/handling redirects/" class="article-date">
-  <time datetime="2017-06-24T23:40:55.000Z" itemprop="datePublished">2017-06-24</time>
+  <time datetime="2017-06-24T08:40:55.000Z" itemprop="datePublished">2017-06-24</time>
 </a>
     
   </div>
@@ -217,10 +160,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/24/handling redirects/" data-id="cj4ddblz90004mksax3zklrke" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/06/24/handling redirects/" data-id="cj4ntqqst0003qksaq91vt3vm" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
 
     </footer>
   </div>
@@ -232,7 +175,7 @@
     <article id="post-Expression Expand" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/06/22/Expression Expand/" class="article-date">
-  <time datetime="2017-06-23T03:18:00.000Z" itemprop="datePublished">2017-06-22</time>
+  <time datetime="2017-06-22T12:18:00.000Z" itemprop="datePublished">2017-06-22</time>
 </a>
     
   </div>
@@ -305,7 +248,7 @@ String popStack(Stack&lt;Object&gt; stack){
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/22/Expression Expand/" data-id="cj4ddblz40002mksa43jirwht" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/06/22/Expression Expand/" data-id="cj4ntqqsm0001qksa1p6afp1z" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
@@ -320,7 +263,7 @@ String popStack(Stack&lt;Object&gt; stack){
     <article id="post-Sliding Window Median" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/06/22/Sliding Window Median/" class="article-date">
-  <time datetime="2017-06-22T22:51:00.000Z" itemprop="datePublished">2017-06-22</time>
+  <time datetime="2017-06-22T07:51:00.000Z" itemprop="datePublished">2017-06-22</time>
 </a>
     
   </div>
@@ -438,7 +381,7 @@ class Node implements Comparable&lt;Node&gt;{
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/22/Sliding Window Median/" data-id="cj4ddblzc0005mksalkwnm06k" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/06/22/Sliding Window Median/" data-id="cj4ntqqt6000aqksagcyzjf8p" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
@@ -453,7 +396,7 @@ class Node implements Comparable&lt;Node&gt;{
     <article id="post-爬虫中遇到的登录login和form" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/06/21/爬虫中遇到的登录login和form/" class="article-date">
-  <time datetime="2017-06-22T06:21:57.000Z" itemprop="datePublished">2017-06-21</time>
+  <time datetime="2017-06-21T15:21:57.000Z" itemprop="datePublished">2017-06-21</time>
 </a>
     
   </div>
@@ -499,7 +442,7 @@ class Node implements Comparable&lt;Node&gt;{
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/21/爬虫中遇到的登录login和form/" data-id="cj4ddblzz000fmksa46tg8otu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/06/21/爬虫中遇到的登录login和form/" data-id="cj4ntqqsy0005qksag0369a36" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
@@ -514,7 +457,7 @@ class Node implements Comparable&lt;Node&gt;{
     <article id="post-leetcode:lintcode刷题系－Trapping Rain Water 类问题的分析" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/06/21/leetcode:lintcode刷题系－Trapping Rain Water 类问题的分析/" class="article-date">
-  <time datetime="2017-06-21T21:20:00.000Z" itemprop="datePublished">2017-06-21</time>
+  <time datetime="2017-06-21T06:20:00.000Z" itemprop="datePublished">2017-06-21</time>
 </a>
     
   </div>
@@ -578,7 +521,7 @@ public int trapRainWater(int[] heights) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/21/leetcode:lintcode刷题系－Trapping Rain Water 类问题的分析/" data-id="cj4ddblzd0006mksacmclc8wp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/06/21/leetcode:lintcode刷题系－Trapping Rain Water 类问题的分析/" data-id="cj4ntqqt9000dqksafl393fz3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
@@ -593,7 +536,7 @@ public int trapRainWater(int[] heights) {
     <article id="post-first-one" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/06/12/first-one/" class="article-date">
-  <time datetime="2017-06-12T22:52:57.000Z" itemprop="datePublished">2017-06-12</time>
+  <time datetime="2017-06-12T07:52:57.000Z" itemprop="datePublished">2017-06-12</time>
 </a>
     
   </div>
@@ -617,10 +560,81 @@ public int trapRainWater(int[] heights) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/12/first-one/" data-id="cj4ddblz10001mksautryi3jj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/06/12/first-one/" data-id="cj4ntqqt10008qksarsma4y7j" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-一些在爬虫中用到的python tricks" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/02/一些在爬虫中用到的python tricks/" class="article-date">
+  <time datetime="2017-06-02T08:50:00.000Z" itemprop="datePublished">2017-06-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/02/一些在爬虫中用到的python tricks/">爬虫笔记4</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一些在爬虫中用到的python-tricks"><a href="#一些在爬虫中用到的python-tricks" class="headerlink" title="一些在爬虫中用到的python tricks"></a>一些在爬虫中用到的python tricks</h3><p><em>string.strip([c])</em></p>
+<p>//This method returns a copy of the string in which all chars have been stripped from the beginning and the end of the string.</p>
+<p>返回一个string，是原string的copy但删除了所有的c字符。</p>
+<p>Reference: <a href="https://www.tutorialspoint.com/python/string_strip.htm" target="_blank" rel="external">https://www.tutorialspoint.com/python/string_strip.htm</a></p>
+<p><code>.strip()</code> removes <em>all</em> whitespace at the start and end, including spaces, tabs, newlines and carriage returns. </p>
+<p>Reference: <a href="https://stackoverflow.com/questions/13013734/string-strip-in-python" target="_blank" rel="external">https://stackoverflow.com/questions/13013734/string-strip-in-python</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">str.split(str=&quot;&quot;, num=number)</div></pre></td></tr></table></figure>
+<p>//str是分隔符，默认是space</p>
+<p>举例说明吧，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">str = &quot;Line1-abcdef \nLine2-abc \nLine4-abcd&quot;;</div><div class="line">print str.split( )</div><div class="line">print str.split(&apos; &apos;, 1 )</div></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[&apos;Line1-abcdef&apos;, &apos;Line2-abc&apos;, &apos;Line4-abcd&apos;]</div><div class="line">[&apos;Line1-abcdef&apos;, &apos;\nLine2-abc \nLine4-abcd&apos;]</div></pre></td></tr></table></figure>
+<p>Reference: <a href="https://www.tutorialspoint.com/python/string_split.htm" target="_blank" rel="external">https://www.tutorialspoint.com/python/string_split.htm</a></p>
+<h3 id="Unicode"><a href="#Unicode" class="headerlink" title="Unicode"></a>Unicode</h3><p> A character is <strong>not, not, not</strong> a byte.  a character is the platonic ideal of the smallest unit of textA.  character encoding defines a mapping between our platonic characters and some way of representing them as bytes. Because there are <u>many ways of representing the same character</u> as bytes, this means that if you have a series of bytes, but do not know their encoding - even if you know the data is textual - the data is meaningless. First thing before everything, is knowing the encoding.</p>
+<p>In python, there are three distict string types:</p>
+<ol>
+<li>‘unicode’, which represents unicode strings (text strings).</li>
+<li>‘str’, which represents byte strings (binary data).</li>
+<li>‘basestring’, which acts as a parent class for both of the other string types.</li>
+</ol>
+<p>Conversion between the two types is meaningless without an encoding, Python relies on a ‘default encoding’, specified by sys.setdefaultencoding().</p>
+<p>Simply set encoding with function <code>sys.setdefaultencoding()</code> is a solution but may not that good, since the web may use multiple different text encoding.  </p>
+<p>Here is a correction solution, referenced from: <a href="http://blog.notdot.net/2010/07/Getting-unicode-right-in-Python" target="_blank" rel="external">http://blog.notdot.net/2010/07/Getting-unicode-right-in-Python</a></p>
+<ul>
+<li>All <u>text strings</u>, everywhere should be of type unicode, not str. If you’re handling text, and your variable is a str, it’s a bug!</li>
+<li>To decode a byte string as text, use var.decode(encoding) (eg, <code>var.decode(&#39;utf-8&#39;)</code>, with the correct encoding. To encode a text string as bytes, use <code>var.encode(encoding)</code>.</li>
+<li>Never ever use <code>str()</code> on a unicode string, or <code>unicode()</code> on a byte string without a second argument specifying the encoding.</li>
+<li>Whenever you read data from outside your app, expect it to be bytes - eg, of type str - and call .decode() on it to interpret it as text. Likewise, always call .encode() on text you want to send to the outside world.</li>
+<li>If a string literal in your code is intended to represent text, it should always be prefixed with ‘u’. In fact, you probably never want to define a raw string literal in your code at all. For what it’s worth, though, I’m terrible at this one, as I’m sure pretty much everyone else is, too.</li>
+</ul>
+<p>Usually in python 2, for a web crawler python file, I see a lot:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">reload(sys)</div><div class="line">sys.setdefaulyencoding(&apos;utf8&apos;)</div></pre></td></tr></table></figure>
+<p>But in python3, default is UTF-8 already. No point to write this again.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/02/一些在爬虫中用到的python tricks/" data-id="cj4ntqqsw0004qksagtmjz3h1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
 
     </footer>
   </div>
@@ -651,14 +665,14 @@ public int trapRainWater(int[] heights) {
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a>
+      <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Arkiv</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
     </div>
@@ -668,16 +682,12 @@ public int trapRainWater(int[] heights) {
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Siste innlegg</h3>
     <div class="widget">
       <ul>
         
           <li>
-            <a href="/2017/06/25/一些在爬虫中用到的python tricks/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2017/06/25/Avoid Scraper Trapper/">(no title)</a>
+            <a href="/2017/06/25/Avoid Scraper Trapper/">爬虫笔记3</a>
           </li>
         
           <li>
@@ -690,6 +700,10 @@ public int trapRainWater(int[] heights) {
         
           <li>
             <a href="/2017/06/22/Sliding Window Median/">leetcode/lintcode刷题系－Sliding Window Median</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/21/爬虫中遇到的登录login和form/">爬虫中关于登录网页，文件上传的一些笔记</a>
           </li>
         
       </ul>
