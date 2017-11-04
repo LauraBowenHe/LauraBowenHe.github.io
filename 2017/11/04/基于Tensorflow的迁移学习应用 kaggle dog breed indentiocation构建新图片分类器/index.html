@@ -5,17 +5,17 @@
   
   <title>Bowen He&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="基于Tensorflow的迁移学习应用 kaggle dog breed indentiocation构建新图片分类器本文所用数据来源于https://www.kaggle.com/c/dog-breed-identification, 将基于google tensorflow中的预训练的mobilenet模型和inception v3模型，对新dataset中10200张不同狗品种照片训练新的图">
+  <meta name="description" content="-– title: 基于Tensorflow的迁移学习应用 kaggle dog breed indentiocation构建新图片分类器 date: 2017-11-04 16:37:00 tags:深度学习 -– 基于Tensorflow的迁移学习应用 kaggle dog breed indentiocation构建新图片分类器本文所用数据来源于https://www.kaggle.com/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bowen He&#39;s Blog">
 <meta property="og:url" content="http://yoursite.com/2017/11/04/基于Tensorflow的迁移学习应用 kaggle dog breed indentiocation构建新图片分类器/index.html">
 <meta property="og:site_name" content="Bowen He&#39;s Blog">
-<meta property="og:description" content="基于Tensorflow的迁移学习应用 kaggle dog breed indentiocation构建新图片分类器本文所用数据来源于https://www.kaggle.com/c/dog-breed-identification, 将基于google tensorflow中的预训练的mobilenet模型和inception v3模型，对新dataset中10200张不同狗品种照片训练新的图">
+<meta property="og:description" content="-– title: 基于Tensorflow的迁移学习应用 kaggle dog breed indentiocation构建新图片分类器 date: 2017-11-04 16:37:00 tags:深度学习 -– 基于Tensorflow的迁移学习应用 kaggle dog breed indentiocation构建新图片分类器本文所用数据来源于https://www.kaggle.com/">
 <meta property="og:image" content="http://yoursite.com/Users/bowenhe/Desktop/Screen%20Shot%202017-11-04%20at%203.59.56%20PM.png">
-<meta property="og:updated_time" content="2017-11-04T23:35:15.000Z">
+<meta property="og:updated_time" content="2017-11-04T23:38:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bowen He&#39;s Blog">
-<meta name="twitter:description" content="基于Tensorflow的迁移学习应用 kaggle dog breed indentiocation构建新图片分类器本文所用数据来源于https://www.kaggle.com/c/dog-breed-identification, 将基于google tensorflow中的预训练的mobilenet模型和inception v3模型，对新dataset中10200张不同狗品种照片训练新的图">
+<meta name="twitter:description" content="-– title: 基于Tensorflow的迁移学习应用 kaggle dog breed indentiocation构建新图片分类器 date: 2017-11-04 16:37:00 tags:深度学习 -– 基于Tensorflow的迁移学习应用 kaggle dog breed indentiocation构建新图片分类器本文所用数据来源于https://www.kaggle.com/">
 <meta name="twitter:image" content="http://yoursite.com/Users/bowenhe/Desktop/Screen%20Shot%202017-11-04%20at%203.59.56%20PM.png">
   
     <link rel="alternate" href="/atom.xml" title="Bowen He&#39;s Blog" type="application/atom+xml">
@@ -81,7 +81,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="基于Tensorflow的迁移学习应用-kaggle-dog-breed-indentiocation构建新图片分类器"><a href="#基于Tensorflow的迁移学习应用-kaggle-dog-breed-indentiocation构建新图片分类器" class="headerlink" title="基于Tensorflow的迁移学习应用 kaggle dog breed indentiocation构建新图片分类器"></a>基于Tensorflow的迁移学习应用 kaggle dog breed indentiocation构建新图片分类器</h3><p>本文所用数据来源于<a href="https://www.kaggle.com/c/dog-breed-identification" target="_blank" rel="external">https://www.kaggle.com/c/dog-breed-identification</a>, 将基于google tensorflow中的预训练的mobilenet模型和inception v3模型，对新dataset中10200张不同狗品种照片训练新的图片分类。</p>
+        <p>-–</p>
+<p>title: 基于Tensorflow的迁移学习应用 kaggle dog breed indentiocation构建新图片分类器</p>
+<p>date: 2017-11-04 16:37:00</p>
+<p>tags:深度学习</p>
+<p>-–</p>
+<h3 id="基于Tensorflow的迁移学习应用-kaggle-dog-breed-indentiocation构建新图片分类器"><a href="#基于Tensorflow的迁移学习应用-kaggle-dog-breed-indentiocation构建新图片分类器" class="headerlink" title="基于Tensorflow的迁移学习应用 kaggle dog breed indentiocation构建新图片分类器"></a>基于Tensorflow的迁移学习应用 kaggle dog breed indentiocation构建新图片分类器</h3><p>本文所用数据来源于<a href="https://www.kaggle.com/c/dog-breed-identification" target="_blank" rel="external">https://www.kaggle.com/c/dog-breed-identification</a>, 将基于google tensorflow中的预训练的mobilenet模型和inception v3模型，对新dataset中10200张不同狗品种照片训练新的图片分类。</p>
 <h4 id="Why-transfer-learning-here"><a href="#Why-transfer-learning-here" class="headerlink" title="Why transfer learning here?"></a>Why transfer learning here?</h4><ol>
 <li>一个好的图片分类器，从scratch开始搭建，不仅构建cnn archtiecture会花费大量的时间精力，而且为了分类器的精准度，也需要大量的图片作为training data。</li>
 <li>而实际应用中，针对不用需要而构建的分类器，通常只有小量的数据集，从scratch开始训练一个巨大的拥有百万甚至更多的parameters的cnn分类器很容导致过拟合，而使训练出的分类器在general set上表现不佳。</li>
@@ -138,7 +143,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/04/基于Tensorflow的迁移学习应用 kaggle dog breed indentiocation构建新图片分类器/" data-id="cj9lyvg6x000f0hlvmz8byho2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/11/04/基于Tensorflow的迁移学习应用 kaggle dog breed indentiocation构建新图片分类器/" data-id="cj9lyzrdu000f1ilvd7pf16p9" class="article-share-link">Share</a>
       
       
     </footer>
