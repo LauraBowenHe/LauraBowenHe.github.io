@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Bowen He&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="基于Tensorflow的迁移学习应用 kaggle dog breed indentiocation构建新图片分类器本文所用数据来源于https://www.kaggle.com/c/dog-breed-identification, 将基于google tensorflow中的预训练的mobilenet模型和inception v3模型，对新dataset中10200张不同狗品种照片训练新的图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bowen He&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/2017/11/04/基于Tensorflow的迁移学习应用 kaggle dog breed indentiocation构建新图片分类器/index.html">
+<meta property="og:site_name" content="Bowen He&#39;s Blog">
+<meta property="og:description" content="基于Tensorflow的迁移学习应用 kaggle dog breed indentiocation构建新图片分类器本文所用数据来源于https://www.kaggle.com/c/dog-breed-identification, 将基于google tensorflow中的预训练的mobilenet模型和inception v3模型，对新dataset中10200张不同狗品种照片训练新的图">
+<meta property="og:image" content="http://yoursite.com/Users/bowenhe/Desktop/Screen%20Shot%202017-11-04%20at%203.59.56%20PM.png">
+<meta property="og:updated_time" content="2017-11-04T23:30:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Bowen He&#39;s Blog">
+<meta name="twitter:description" content="基于Tensorflow的迁移学习应用 kaggle dog breed indentiocation构建新图片分类器本文所用数据来源于https://www.kaggle.com/c/dog-breed-identification, 将基于google tensorflow中的预训练的mobilenet模型和inception v3模型，对新dataset中10200张不同狗品种照片训练新的图">
+<meta name="twitter:image" content="http://yoursite.com/Users/bowenhe/Desktop/Screen%20Shot%202017-11-04%20at%203.59.56%20PM.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Bowen He&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Bowen He&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">劝君惜取少年时.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-基于Tensorflow的迁移学习应用 kaggle dog breed indentiocation构建新图片分类器" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/04/基于Tensorflow的迁移学习应用 kaggle dog breed indentiocation构建新图片分类器/" class="article-date">
+  <time datetime="2017-11-04T23:30:24.000Z" itemprop="datePublished">2017-11-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="基于Tensorflow的迁移学习应用-kaggle-dog-breed-indentiocation构建新图片分类器"><a href="#基于Tensorflow的迁移学习应用-kaggle-dog-breed-indentiocation构建新图片分类器" class="headerlink" title="基于Tensorflow的迁移学习应用 kaggle dog breed indentiocation构建新图片分类器"></a>基于Tensorflow的迁移学习应用 kaggle dog breed indentiocation构建新图片分类器</h3><p>本文所用数据来源于<a href="https://www.kaggle.com/c/dog-breed-identification" target="_blank" rel="external">https://www.kaggle.com/c/dog-breed-identification</a>, 将基于google tensorflow中的预训练的mobilenet模型和inception v3模型，对新dataset中10200张不同狗品种照片训练新的图片分类。</p>
+<h4 id="Why-transfer-learning-here"><a href="#Why-transfer-learning-here" class="headerlink" title="Why transfer learning here?"></a>Why transfer learning here?</h4><ol>
+<li><h4 id="一个好的图片分类器，从scratch开始搭建，不仅构建cnn-archtiecture会花费大量的时间精力，而且为了分类器的精准度，也需要大量的图片作为training-data。"><a href="#一个好的图片分类器，从scratch开始搭建，不仅构建cnn-archtiecture会花费大量的时间精力，而且为了分类器的精准度，也需要大量的图片作为training-data。" class="headerlink" title="一个好的图片分类器，从scratch开始搭建，不仅构建cnn archtiecture会花费大量的时间精力，而且为了分类器的精准度，也需要大量的图片作为training data。"></a>一个好的图片分类器，从scratch开始搭建，不仅构建cnn archtiecture会花费大量的时间精力，而且为了分类器的精准度，也需要大量的图片作为training data。</h4></li>
+<li><p>而实际应用中，针对不用需要而构建的分类器，通常只有小量的数据集，从scratch开始训练一个巨大的拥有百万甚至更多的parameters的cnn分类器很容导致过拟合，而使训练出的分类器在general set上表现不佳。</p>
+</li>
+<li><p>我们将使用的经过预训练的mobilenet模型和inception v3模型，是google基于 <a href="http://www.image-net.org/" target="_blank" rel="external">ImageNet</a> , 一个计算机视觉系统识别项目，目前世界上图像识别最大的数据库，其包含了分成了数千个类型、数百万张有标注的图像, 训练出的两个分类器模型，其Top-1 accuracy 分别达到78.0%和70.7%，inception v3会有更好的accuray，而mobilenet因为其轻量，训练速度更快。</p>
+</li>
+<li><p>针对与原数据库相似但size较小的数据集，使用transfer learning，将已根据</p>
+</li>
+</ol>
+<h5 id="基于MobileNet的新分类器搭建"><a href="#基于MobileNet的新分类器搭建" class="headerlink" title="基于MobileNet的新分类器搭建"></a>基于MobileNet的新分类器搭建</h5><h5 id="准备阶段，get-code"><a href="#准备阶段，get-code" class="headerlink" title="准备阶段，get code"></a>准备阶段，get code</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/googlecodelabs/tensorflow-for-poets-2</div><div class="line">cd tensorflow-for-poets-2</div></pre></td></tr></table></figure>
+<h5 id="准备阶段，get-dataset"><a href="#准备阶段，get-dataset" class="headerlink" title="准备阶段，get dataset"></a>准备阶段，get dataset</h5><p><a href="https://www.kaggle.com/c/dog-breed-identification" target="_blank" rel="external">https://www.kaggle.com/c/dog-breed-identification</a>, 下载training dataset, labels.csv和test dataset,</p>
+<p>预处理数据集</p>
+<p>我们直接下载得到的训练数据集中，只有所有的图片在同一个数据集，我们需要整理成模型需要的格式，即在同一个directory下，将每个label建一个subdirectory，将所有对应的图片放入当前subdirectory下，参考code可见</p>
+<p><a href="https://github.com/LauraBowenHe/dog-breed-identification/blob/master/MobileNet/classify_pic_to_dir.py" target="_blank" rel="external">https://github.com/LauraBowenHe/dog-breed-identification/blob/master/MobileNet/classify_pic_to_dir.py</a></p>
+<p>配置MobileNet</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">IMAGE_SIZE=224</div><div class="line">ARCHITECTURE=&quot;mobilenet_1.0_$&#123;IMAGE_SIZE&#125;&quot;</div></pre></td></tr></table></figure>
+<p>注意这里：</p>
+<p>IMAGE_SIZE, 即image resolution配置的参数：128,160,192, or 224px。当然越高的resolution可以带来更高的accuray，同时也需要更多的训练时间。</p>
+<p>相对模型size占最大largest MobileNet的比例: 1.0, 0.75, 0.50, or 0.25. 同样，所占比例越大，accuracy越高，也需要更多的训练时间。</p>
+<p>在这个任务中，我们希望获得更可能高的accuray，所以采取以上配置。</p>
+<p>用tensorboard监控训练过程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tensorboard --logdir tf_files/training_summaries &amp;</div></pre></td></tr></table></figure>
+<p>在后台启用tensorboard，tensorboard可以用来监控训练过程，帮助我们更好判断是否过拟合等。</p>
+<p>训练完成后，可以在浏览器输入</p>
+<p><a href="http://localhost:6006" target="_blank" rel="external">http://localhost:6006</a> </p>
+<p>or <a href="http://0.0.0.0:6006即可看到tensorboard为我们绘画的各种训练过程图像。" target="_blank" rel="external">http://0.0.0.0:6006即可看到tensorboard为我们绘画的各种训练过程图像。</a></p>
+<p>训练模型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">python -m scripts.retrain \</div><div class="line">  --bottleneck_dir=tf_files/bottlenecks \</div><div class="line">  --how_many_training_steps=3000 \</div><div class="line">  </div><div class="line">  --model_dir=tf_files/models/ \</div><div class="line">  --summaries_dir=tf_files/training_summaries/&quot;$&#123;ARCHITECTURE&#125;&quot; \</div><div class="line">  --output_graph=tf_files/retrained_graph.pb \</div><div class="line">  --output_labels=tf_files/retrained_labels.txt \</div><div class="line">  --architecture=&quot;$&#123;ARCHITECTURE&#125;&quot; \</div><div class="line">  --image_dir=tf_files/dog_photos</div></pre></td></tr></table></figure>
+<p>注意：</p>
+<ol>
+<li><p>在这里，把我们之前预处理过的数据集，让在tf_files directory下。</p>
+</li>
+<li><p>optionally，我们可以添加更多的训练参数，详情可以参考</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">python -m scripts.retrain -h</div><div class="line">我加入了以下的参数</div><div class="line">--training_rate=0.001 \</div><div class="line">--train_batch_size=64 \</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>调参</p>
+<p>调节training steps， training rate， train batch size等等。</p>
+<p>预测</p>
+<p>对于单个图片，可以用source code中的label_image.py</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">python -m scripts.label_image \</div><div class="line">    --graph=tf_files/retrained_graph.pb  \</div><div class="line">    --image=tf_files/flower_photos/daisy/21652746_cc379e0eea_m.jpg</div></pre></td></tr></table></figure>
+<p>而针对这个狗品种分类器的任务，我们把从kaggle上下载的test dataset也放入tf_files directory下，修改了一下source中的label_image.py，增加新的文件generate_result.py, 对每个文件依次调用label_image.py，code可见</p>
+<p><a href="https://github.com/LauraBowenHe/dog-breed-identification/blob/master/MobileNet/scripts/label_image.py" target="_blank" rel="external">https://github.com/LauraBowenHe/dog-breed-identification/blob/master/MobileNet/scripts/label_image.py</a></p>
+<p><a href="https://github.com/LauraBowenHe/dog-breed-identification/tree/master/MobileNet" target="_blank" rel="external">https://github.com/LauraBowenHe/dog-breed-identification/tree/master/MobileNet</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python generate_result.py</div></pre></td></tr></table></figure>
+<p>这一步预测时间会比较长，大概7-8小时，生成的文件会存在/tensorflow-poets-2/output/下，我们在训练前可先手动创建这个文件夹。</p>
+<h3 id="基于inception-v3的新分类器搭建"><a href="#基于inception-v3的新分类器搭建" class="headerlink" title="基于inception v3的新分类器搭建"></a>基于inception v3的新分类器搭建</h3><p>inception v3的搭建和mobilenet很相似，只有在get code时有所不同。</p>
+<h4 id="准备阶段，get-code-1"><a href="#准备阶段，get-code-1" class="headerlink" title="准备阶段，get code"></a>准备阶段，get code</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git clone https://github.com/tensorflow/tensorflow</div><div class="line">$ cd tensorflow</div><div class="line">$ git checkout</div></pre></td></tr></table></figure>
+<p>准备阶段,  get dataset和预处理数据集</p>
+<p>参考以上</p>
+<p>训练模型</p>
+<p>retrain的代码在/examples/image_retraining，我们可以直接用刚刚mobilenet模型中，/tensorflow-for-poet-2/tf_files，因为我们之前已经有把数据集都放在那里了，当然即使没有也没关系，新建一个tf_files就行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">python retrain.py \</div><div class="line">  --bottleneck_dir=~/tensorflow-for-poets-2/tf_files/bottlenecks \</div><div class="line">  --how_many_training_steps=500 \</div><div class="line">  --model_dir=~/tensorflow-for-poets-2/tf_files/inception \</div><div class="line">  --summaries_dir=~/tensorflow-for-poets-2/tf_files/training_summaries/basic \</div><div class="line">  --output_graph=~/tensorflow-for-poets-2/tf_files/retrained_graph.pb \</div><div class="line">  --output_labels=~/tensorflow-for-poets-2/tf_files/retrained_labels.txt \</div><div class="line">  --image_dir=~/tensorflow-for-poets-2/tf_files/dog_photos</div></pre></td></tr></table></figure>
+<p><code>python -m retrain.py -h 可以查阅可以添加的参数</code></p>
+<p>附一张训练结束的图，可见当前分类器的validation accuracy是90.3%。</p>
+<p><img src="/Users/bowenhe/Desktop/Screen Shot 2017-11-04 at 3.59.56 PM.png" alt="Screen Shot 2017-11-04 at 3.59.56 PM"></p>
+<p>调参</p>
+<p>调节training steps， training rate， train batch size等等。</p>
+<p>预测</p>
+<p>因为我们已将生成的模型放入tf_files。我们把从kaggle上下载的test dataset也放入tf_files directory下，修改了一下source中的label_image.py，增加新的文件generate_result.py, 对每个文件依次调用label_image.py，code可见</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python generate_result.py</div></pre></td></tr></table></figure>
+<p>这一步预测时间会比较长，大概7-8小时，生成的文件会存在/tensorflow-poets-2/output/下，我们在训练前可先手动创建这个文件夹。</p>
+<h5 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h5><p><a href="http://cs231n.github.io/transfer-learning/" target="_blank" rel="external">http://cs231n.github.io/transfer-learning/</a></p>
+<p><a href="https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/#0" target="_blank" rel="external">https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/#0</a></p>
+<p><a href="https://www.ouyangsong.com/2017/05/20/image-classification-retrained-based-on-inceptionv3/" target="_blank" rel="external">https://www.ouyangsong.com/2017/05/20/image-classification-retrained-based-on-inceptionv3/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/11/04/基于Tensorflow的迁移学习应用 kaggle dog breed indentiocation构建新图片分类器/" data-id="cj9lyqune000czklv3ye14w3i" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/06/26/一些在爬虫中用到的python tricks/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">爬虫笔记4</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/11/04/基于Tensorflow的迁移学习应用 kaggle dog breed indentiocation构建新图片分类器/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/26/一些在爬虫中用到的python tricks/">爬虫笔记4</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/25/Avoid Scraper Trapper/">爬虫笔记3</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/24/handling redirects/">爬虫笔记2</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/22/Expression Expand/">leetcode/lintcode刷题系－Expression Expand</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
