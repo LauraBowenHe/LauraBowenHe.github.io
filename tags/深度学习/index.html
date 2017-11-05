@@ -3,19 +3,14 @@
 <head>
   <meta charset="utf-8">
   
-  <title>爬虫笔记2 | Bowen He&#39;s Blog</title>
+  <title>Mot-clé: 深度学习 | Bowen He&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="handling redirectsserver-side redirect, depending on how it is handled, can be easily traversed by Python’s urllib library without any help from Selenium; client-side redirects won’t be handled at all">
-<meta name="keywords" content="爬虫">
-<meta property="og:type" content="article">
-<meta property="og:title" content="爬虫笔记2">
-<meta property="og:url" content="http://yoursite.com/2017/06/24/handling redirects/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Bowen He&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/tags/深度学习/index.html">
 <meta property="og:site_name" content="Bowen He&#39;s Blog">
-<meta property="og:description" content="handling redirectsserver-side redirect, depending on how it is handled, can be easily traversed by Python’s urllib library without any help from Selenium; client-side redirects won’t be handled at all">
-<meta property="og:updated_time" content="2017-07-03T07:32:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="爬虫笔记2">
-<meta name="twitter:description" content="handling redirectsserver-side redirect, depending on how it is handled, can be easily traversed by Python’s urllib library without any help from Selenium; client-side redirects won’t be handled at all">
+<meta name="twitter:title" content="Bowen He&#39;s Blog">
   
     <link rel="alternate" href="/atom.xml" title="Bowen He&#39;s Blog" type="application/atom+xml">
   
@@ -68,74 +63,39 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-handling redirects" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/06/24/handling redirects/" class="article-date">
-  <time datetime="2017-06-24T23:40:55.000Z" itemprop="datePublished">2017-06-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      爬虫笔记2
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2017/11/04/kaggle_dog_breed_idnentification/" class="archive-article-date">
+  <time datetime="2017-11-04T23:50:00.000Z" itemprop="datePublished">Nov 4</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/11/04/kaggle_dog_breed_idnentification/">kaggle dog breed identification基于Tensorflow迁移学习搭建图片分类器</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="handling-redirects"><a href="#handling-redirects" class="headerlink" title="handling redirects"></a>handling redirects</h3><p>server-side redirect, depending on how it is handled, can be easily traversed by Python’s urllib library without any help from Selenium;</p>
-<p>client-side redirects won’t be handled at all unless something is actually executing the javascript.</p>
-<p>selenium is capable of handling these Javascript redirects in the same way; when to stop page execution? how to tell when a page is done rediecting? </p>
-<p>Detect that redirected in a clever way by watcing an element in the DOM when the page initially loads, then repeatedly calling the element until Selenium throws a StaleElementReferenceException, the element is no longer attached to the page’s DOM and the site has redirected.</p>
-<h3 id="Image-Processing-and-Text-Recognition"><a href="#Image-Processing-and-Text-Recognition" class="headerlink" title="Image Processing and Text Recognition"></a>Image Processing and Text Recognition</h3><h5 id="Pillow"><a href="#Pillow" class="headerlink" title="Pillow"></a>Pillow</h5><p>Pillow allows you to easily import and manipulate images iwth a variety of filters, masks, and even pixel-specifc transformations.</p>
-<p>from PIL import import Image, ImageFilter</p>
-<p>kitten = Image.open(“kitten.jpg”)</p>
-<p>blurryKitten = kitten.filter(ImageFilter.GaussianBlur)</p>
-<p>blurryKitten.save(“kitten_blurred.jpg”)</p>
-<p>blurrykitten.show()</p>
-<p>for more useful, <a href="http://pillow.readthedocs.org/" target="_blank" rel="external">http://pillow.readthedocs.org/</a></p>
-<h5 id="Tesseract"><a href="#Tesseract" class="headerlink" title="Tesseract"></a>Tesseract</h5><p>scrape text from images on webste.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/24/handling redirects/" data-id="cj9m043um000577lv3b9s0pfb" class="article-share-link">Partager</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2017/06/25/Avoid Scraper Trapper/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Récent</strong>
-      <div class="article-nav-title">
-        
-          爬虫笔记3
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/06/22/Expression Expand/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ancien</strong>
-      <div class="article-nav-title">leetcode/lintcode刷题系－Expression Expand</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
 
 </section>
         
