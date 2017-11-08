@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="leetcode," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Sliding Window MedianQuestion: Given an array of n integer, and a moving window(size k), move the window at each iteration from the start of the array, find the median of the element inside the window">
+<meta name="keywords" content="leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode&#x2F;lintcode刷题系－Sliding Window Median">
+<meta property="og:url" content="http://yoursite.com/2017/06/22/Sliding Window Median/index.html">
+<meta property="og:site_name" content="Bowen He&#39;s Blog">
+<meta property="og:description" content="Sliding Window MedianQuestion: Given an array of n integer, and a moving window(size k), move the window at each iteration from the start of the array, find the median of the element inside the window">
+<meta property="og:updated_time" content="2017-06-23T03:18:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="leetcode&#x2F;lintcode刷题系－Sliding Window Median">
+<meta name="twitter:description" content="Sliding Window MedianQuestion: Given an array of n integer, and a moving window(size k), move the window at each iteration from the start of the array, find the median of the element inside the window">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/22/Sliding Window Median/"/>
+
+
+
+
+
+  <title>leetcode/lintcode刷题系－Sliding Window Median | Bowen He's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Bowen He's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">劝君惜取少年时.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/22/Sliding Window Median/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bowen He's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">leetcode/lintcode刷题系－Sliding Window Median</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-22T15:51:00-07:00">
+                2017-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="Sliding-Window-Median"><a href="#Sliding-Window-Median" class="headerlink" title="Sliding Window Median"></a>Sliding Window Median</h4><p>Question: Given an array of n integer, and a moving window(size k), move the window at each iteration from the start of the array, find the median of the element inside the window at each moving. (If there are even numbers in the array, return the N/2-th number after sorting the element in the window. )</p>
+<p><strong>Example</strong>For array <code>[1,2,7,8,5]</code>, moving window size k = 3. return <code>[2,7,7]</code>At first the window is at the start of the array like this<code>[ | 1,2,7 | ,8,5]</code> , return the median <code>2</code>;then the window move one step forward.<code>[1, | 2,7,8 | ,5]</code>, return the median <code>7</code>;then the window move one step forward again.<code>[1,2, | 7,8,5 | ]</code>, return the median <code>7</code>;</p>
+<h5 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h5><ol>
+<li>首先，这道题目是一道移动窗口求中位数类的问题，对于动态求中位数的问题，通常我会用heap的模版来处理，即维持两个heap，minheap和maxheap，maxheap来存放所有比中位数小的及相等的数＋中位数，minheap存放所有比中位数大的数；举例说明，当我们的数组是［1，2，7］，这个时候maxheap存放［1，2］，minheap存放［7］，中位数就是maxheap里的最大值，当有新的数进来或者旧的数出去的时候，我们每次都和当前median的大小来比较，决定放入哪个heap，再根据左右两边size的大小进行相应调整，永远满足median是 N/2-th number。</li>
+<li>选用什么数据结构？因为这里的动态窗口还要求删除被移除窗口的元素，所以我们需要一个数据结构，既能满足heap的性质，又能满足定点删除的性质，于是想到了hashheap！java中TreeSet正好满足。</li>
+<li>这里有一个tricky的点在于，因为input中的输入点可能是duplicated，直接把数放到treeset中，不能存下duplicated elements，怎么解决？想到了可以构造一个class，同时包含这个element在input array的位置，即id，还包含这个element的value，那么我们将得到unique的object。</li>
+</ol>
+<p>代码：</p>
+<pre><code>public class Solution {
+/**
+ * @param nums: A list of integers.
+ * @return: The median of the element inside the window at each moving.
+ */
+public Node insertNum(Node median, Node currNode, TreeSet&lt;Node&gt; minheap, TreeSet&lt;Node&gt; maxheap){
+    /* median is put on the maxheap */
+    if(maxheap.size() == 0 &amp;&amp; minheap.size() == 0){
+        maxheap.add(currNode);
+        return currNode;
+    }
+    if(currNode.val &lt;= median.val){
+
+        if(maxheap.size()-minheap.size() &lt; 1){
+            maxheap.add(currNode);
+            median = maxheap.last();
+        }else{
+            minheap.add(median);
+            maxheap.remove(median);
+            maxheap.add(currNode);
+            median = maxheap.last();
+        }
+    }else{
+        if(maxheap.size() &gt; minheap.size() ){
+            minheap.add(currNode);
+        }else{
+            minheap.add(currNode);
+            median = minheap.first();
+            maxheap.add(median);
+            minheap.remove(median);
+        }
+    }
+    return median;
+}
+
+public ArrayList&lt;Integer&gt; medianSlidingWindow(int[] nums, int k) {
+    // write your code here
+    ArrayList&lt;Integer&gt; list = new ArrayList&lt;Integer&gt;();
+    if(nums.length == 0 || k &lt;= 0 || nums.length &lt; k){
+        return list;
+    }
+
+    TreeSet&lt;Node&gt; minheap = new TreeSet&lt;Node&gt;();
+    TreeSet&lt;Node&gt; maxheap = new TreeSet&lt;Node&gt;();
+
+    Node median = new Node(0, nums[0]);
+    maxheap.add(median);
+    for(int i = 1; i &lt; k; i++){
+        Node currNode = new Node(i, nums[i]);
+        median = insertNum(median,  currNode, minheap, maxheap);
+    }
+    list.add(median.val);
+
+    for(int i = k; i &lt; nums.length; i++){
+        Node currNode = new Node(i, nums[i]);
+        Node prevNode = new Node(i-k, nums[i-k]);
+        if (minheap.contains(prevNode)) {
+            minheap.remove(prevNode);
+        }
+        else{
+            maxheap.remove(prevNode);
+        }
+
+        median = insertNum(median, currNode, minheap, maxheap);
+        list.add(median.val);
+    }
+    return list;
+  }
+
+}
+
+/* construct node class */
+class Node implements Comparable&lt;Node&gt;{
+    int id;
+    int val;
+    Node(int id, int val){
+        this.id = id;
+        this.val = val;
+    }
+    /* construct compareTo method, to make sure the elements is sorted by val or ID when vals are same */
+    public int compareTo(Node other){
+        if(this.val == other.val){
+            return this.id-other.id;
+        }
+        return this.val-other.val;
+    }
+}
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/21/爬虫中遇到的登录login和form/" rel="next" title="爬虫中关于登录网页，文件上传的一些笔记">
+                <i class="fa fa-chevron-left"></i> 爬虫中关于登录网页，文件上传的一些笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/22/Expression Expand/" rel="prev" title="leetcode/lintcode刷题系－Expression Expand">
+                leetcode/lintcode刷题系－Expression Expand <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="John Doe" />
+          <p class="site-author-name" itemprop="name">John Doe</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">Tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Sliding-Window-Median"><span class="nav-number">1.</span> <span class="nav-text">Sliding Window Median</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#分析："><span class="nav-number">1.1.</span> <span class="nav-text">分析：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
