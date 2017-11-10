@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>leetcode/lintcode刷题系－Expression Expand | Bowen He&#39;s Blog</title>
+  <title>一些python function总结 | Bowen He&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Expression ExpandGiven an expression s includes numbers, letters and brackets. Number represents the number of repetitions inside the brackets(can be a string or another expression)．Please expand expr">
-<meta name="keywords" content="leetcode">
+  <meta name="description" content="一些python function总结今天看一份代码的时候，有些python function不知其何用，想来写个博客把每次遇到的总结在一篇blog，可以时常看看。 print(__doc__)这个可以print出python file or function中注释部分，比如：  in module.py: 123456&amp;quot;&amp;quot;&amp;quot;This is the module fi">
+<meta name="keywords" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode&#x2F;lintcode刷题系－Expression Expand">
-<meta property="og:url" content="http://yoursite.com/2017/06/22/Expression Expand/index.html">
+<meta property="og:title" content="一些python function总结">
+<meta property="og:url" content="http://yoursite.com/2017/11/09/python_script_function/index.html">
 <meta property="og:site_name" content="Bowen He&#39;s Blog">
-<meta property="og:description" content="Expression ExpandGiven an expression s includes numbers, letters and brackets. Number represents the number of repetitions inside the brackets(can be a string or another expression)．Please expand expr">
-<meta property="og:updated_time" content="2017-07-03T07:32:17.000Z">
+<meta property="og:description" content="一些python function总结今天看一份代码的时候，有些python function不知其何用，想来写个博客把每次遇到的总结在一篇blog，可以时常看看。 print(__doc__)这个可以print出python file or function中注释部分，比如：  in module.py: 123456&amp;quot;&amp;quot;&amp;quot;This is the module fi">
+<meta property="og:updated_time" content="2017-11-10T07:07:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode&#x2F;lintcode刷题系－Expression Expand">
-<meta name="twitter:description" content="Expression ExpandGiven an expression s includes numbers, letters and brackets. Number represents the number of repetitions inside the brackets(can be a string or another expression)．Please expand expr">
+<meta name="twitter:title" content="一些python function总结">
+<meta name="twitter:description" content="一些python function总结今天看一份代码的时候，有些python function不知其何用，想来写个博客把每次遇到的总结在一篇blog，可以时常看看。 print(__doc__)这个可以print出python file or function中注释部分，比如：  in module.py: 123456&amp;quot;&amp;quot;&amp;quot;This is the module fi">
   
     <link rel="alternate" href="/atom.xml" title="Bowen He&#39;s Blog" type="application/atom+xml">
   
@@ -68,10 +68,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Expression Expand" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-python_script_function" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/06/22/Expression Expand/" class="article-date">
-  <time datetime="2017-06-23T03:18:00.000Z" itemprop="datePublished">2017-06-22</time>
+    <a href="/2017/11/09/python_script_function/" class="article-date">
+  <time datetime="2017-11-10T07:07:00.000Z" itemprop="datePublished">2017-11-09</time>
 </a>
     
   </div>
@@ -82,7 +82,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      leetcode/lintcode刷题系－Expression Expand
+      一些python function总结
     </h1>
   
 
@@ -90,64 +90,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="Expression-Expand"><a href="#Expression-Expand" class="headerlink" title="Expression Expand"></a>Expression Expand</h4><p>Given an expression <code>s</code> includes numbers, letters and brackets. Number represents the number of repetitions inside the brackets(can be a string or another expression)．Please expand expression to be a string.</p>
-<p><strong>Example</strong>s = <code>abc3[a]</code> return <code>abcaaa</code><br>s = <code>3[abc]</code> return <code>abcabcabc</code><br>s = <code>4[ac]dy</code>, return <code>acacacacdy</code><br>s = <code>3[2[ad]3[pf]]xyz</code>, return <code>adadpfpfpfadadpfpfpfadadpfpfpfxyz</code></p>
-<p>语法整理：</p>
-<p>Integer.valueOf(int i)//returns an integer object holds the value of specified primitives, 返回一个保存原指定数的整数对象。</p>
-<p>Integer.valueOf(String s)//This returns an Integer object holding the value of the specified string representation.返回一个保存原指定string的整数对象。</p>
-<p>Stack<object> stack = new Stack<object>(); //a templetate of stack, use explicit conversion to convert to some class.</object></object></p>
-<p>Character.isDigit(c) //check if a character is ‘0’-‘9’</p>
-<p>Integer count = (Integer)stack.pop();</p>
-<p>instanceof //check type of the object</p>
-<pre><code>public class Solution {
-/**
- * @param s  an expression includes numbers, letters and brackets
- * @return a string
- */
-public String expressionExpand(String s) {
-    // Write your code here
-    Stack&lt;Object&gt; stack = new Stack&lt;Object&gt;();
-    int number = 0;
-    for(char c: s.toCharArray()){
-        if(Character.isDigit(c)){
-            number = number * 10 + (c-&apos;0&apos;);
-        }else if(c == &apos;[&apos;){
-            stack.push(Integer.valueOf(number));
-            number = 0;
-        }else if(c == &apos;]&apos;){
-            String temp = popStack(stack);
-            Integer count = (Integer)stack.pop();
-            while(count &gt; 0){
-                stack.push(temp);
-                count--;
-            }
-        }else{
-            stack.push(String.valueOf(c));
-        }
-    }
-    return popStack(stack);
-}
+        <h1 id="一些python-function总结"><a href="#一些python-function总结" class="headerlink" title="一些python function总结"></a>一些python function总结</h1><p>今天看一份代码的时候，有些python function不知其何用，想来写个博客把每次遇到的总结在一篇blog，可以时常看看。</p>
+<h3 id="print-doc"><a href="#print-doc" class="headerlink" title="print(__doc__)"></a><code>print(__doc__)</code></h3><p>这个可以print出python file or function中注释部分，比如：</p>
+<p> in module.py:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&quot;&quot;&quot;This is the module file, use for provide a function.&quot;&quot;&quot;</div><div class="line">def func(x):</div><div class="line">	return x</div><div class="line">&gt;&gt;&gt;import module</div><div class="line">&gt;&gt;&gt;print(module.__doc__)</div><div class="line">&gt;&gt;&gt;&apos;This is the module file, use for provide a function.&apos;</div></pre></td></tr></table></figure>
 
-String popStack(Stack&lt;Object&gt; stack){
-    Stack&lt;String&gt; container = new Stack&lt;String&gt;();
-    while(!stack.empty() &amp;&amp; (stack.peek() instanceof String)){
-        container.push((String)stack.pop());
-    }
-    StringBuilder sb = new StringBuilder();
-    while(!container.empty()){
-        sb.append(container.pop());
-    }
-    return sb.toString();
- }
-}
-</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/22/Expression Expand/" data-id="cj9tk98fj000143lvgoz2kgkl" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2017/11/09/python_script_function/" data-id="cj9tk98fu000543lvsano990v" class="article-share-link">Delen</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
 
     </footer>
   </div>
@@ -155,19 +109,10 @@ String popStack(Stack&lt;Object&gt; stack){
     
 <nav id="article-nav">
   
-    <a href="/2017/06/24/handling redirects/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Nieuwer</strong>
-      <div class="article-nav-title">
-        
-          爬虫笔记2
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/06/22/Sliding Window Median/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/11/04/kaggle_dog_breed_idnentification/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Ouder</strong>
-      <div class="article-nav-title">leetcode/lintcode刷题系－Sliding Window Median</div>
+      <div class="article-nav-title">kaggle dog breed identification基于Tensorflow迁移学习搭建图片分类器</div>
     </a>
   
 </nav>
