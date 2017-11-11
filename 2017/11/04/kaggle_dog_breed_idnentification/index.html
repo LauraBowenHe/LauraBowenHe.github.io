@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Bowen He&#39;s Blog">
 <meta property="og:description" content="基于Tensorflow的迁移学习应用 kaggle dog breed identification构建新图片分类器本文所用数据来源于https://www.kaggle.com/c/dog-breed-identification, 将基于google tensorflow中的预训练的mobilenet模型和inception v3模型，对新dataset中10200张不同狗品种照片训练新的图">
 <meta property="og:image" content="http://yoursite.com/Users/bowenhe/Desktop/Screen%20Shot%202017-11-04%20at%203.59.56%20PM.png">
-<meta property="og:updated_time" content="2017-11-05T00:09:55.000Z">
+<meta property="og:updated_time" content="2017-11-11T00:40:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kaggle dog breed identification基于Tensorflow迁移学习搭建图片分类器">
 <meta name="twitter:description" content="基于Tensorflow的迁移学习应用 kaggle dog breed identification构建新图片分类器本文所用数据来源于https://www.kaggle.com/c/dog-breed-identification, 将基于google tensorflow中的预训练的mobilenet模型和inception v3模型，对新dataset中10200张不同狗品种照片训练新的图">
@@ -139,9 +139,11 @@
 <p>附一张训练结束的图，可见当前分类器的validation accuracy是90.3%。</p>
 <p><img src="/Users/bowenhe/Desktop/Screen Shot 2017-11-04 at 3.59.56 PM.png" alt="Screen Shot 2017-11-04 at 3.59.56 PM"></p>
 <h5 id="调参-1"><a href="#调参-1" class="headerlink" title="调参"></a>调参</h5><p>调节training steps， training rate， train batch size等等。</p>
-<h5 id="预测-1"><a href="#预测-1" class="headerlink" title="预测"></a>预测</h5><p>因为我们已将生成的模型放入tf_files。我们把从kaggle上下载的test dataset也放入tf_files directory下，修改了一下source中的label_image.py，增加新的文件generate_result.py, 对每个文件依次调用label_image.py，code可见</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python generate_result.py</div></pre></td></tr></table></figure>
-<p>这一步预测时间会比较长，大概7-8小时，生成的文件会存在/tensorflow-poets-2/output/下，我们在训练前可先手动创建这个文件夹。</p>
+<h5 id="预测-1"><a href="#预测-1" class="headerlink" title="预测"></a>预测</h5><p>因为我们已将生成的模型放入tf_files。我们把从kaggle上下载的test dataset也放入tf_files directory下，创建了一份label_image_inceptionV3.py，增加新的文件generate_result_inceptionV3.py, 对每个文件依次调用label_image_inceptionV3.py，code可见</p>
+<p><a href="https://github.com/LauraBowenHe/dog-breed-identification/blob/master/InceptionV3/label_image_inceptionV3.py" target="_blank" rel="external">https://github.com/LauraBowenHe/dog-breed-identification/blob/master/InceptionV3/label_image_inceptionV3.py</a></p>
+<p><a href="https://github.com/LauraBowenHe/dog-breed-identification/blob/master/InceptionV3/generate_result_inceptionV3.py" target="_blank" rel="external">https://github.com/LauraBowenHe/dog-breed-identification/blob/master/InceptionV3/generate_result_inceptionV3.py</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python generate_result_inceptionV3.py</div></pre></td></tr></table></figure>
+<p>这一步预测时间会比较长，比MobileNet所用的时间更长，大概在十四个小时，生成的文件会存在/tensorflow-poets-2/output/下，我们在训练前可先手动创建这个文件夹。</p>
 <h5 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h5><p><a href="http://cs231n.github.io/transfer-learning/" target="_blank" rel="external">http://cs231n.github.io/transfer-learning/</a></p>
 <p><a href="https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/#0" target="_blank" rel="external">https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/#0</a></p>
 <p><a href="https://www.ouyangsong.com/2017/05/20/image-classification-retrained-based-on-inceptionv3/" target="_blank" rel="external">https://www.ouyangsong.com/2017/05/20/image-classification-retrained-based-on-inceptionv3/</a></p>
@@ -149,7 +151,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/04/kaggle_dog_breed_idnentification/" data-id="cj9tkbhgr00084slvi8cm00jh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/11/04/kaggle_dog_breed_idnentification/" data-id="cj9uly06v000475lvg4xpzvjs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
