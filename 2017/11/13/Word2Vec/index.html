@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Word2Vec模型 | Bowen He&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Word2Vec模型Stanford cs224n 2017 lecture2课堂笔记（1）+ 自己的理解Reference: https://web.stanford.edu/class/cs224n/lectures/cs224n-2017-lecture2.pdf https://blog.acolyer.org/2016/04/21/the-amazing-power-of-word-ve">
+<meta name="keywords" content="深度学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Word2Vec模型">
+<meta property="og:url" content="http://yoursite.com/2017/11/13/Word2Vec/index.html">
+<meta property="og:site_name" content="Bowen He&#39;s Blog">
+<meta property="og:description" content="Word2Vec模型Stanford cs224n 2017 lecture2课堂笔记（1）+ 自己的理解Reference: https://web.stanford.edu/class/cs224n/lectures/cs224n-2017-lecture2.pdf https://blog.acolyer.org/2016/04/21/the-amazing-power-of-word-ve">
+<meta property="og:image" content="http://yoursite.com/images/word2vec-skip-gram.png">
+<meta property="og:image" content="http://yoursite.com/images/word2vec-cbow.png">
+<meta property="og:updated_time" content="2017-11-14T08:07:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Word2Vec模型">
+<meta name="twitter:description" content="Word2Vec模型Stanford cs224n 2017 lecture2课堂笔记（1）+ 自己的理解Reference: https://web.stanford.edu/class/cs224n/lectures/cs224n-2017-lecture2.pdf https://blog.acolyer.org/2016/04/21/the-amazing-power-of-word-ve">
+<meta name="twitter:image" content="http://yoursite.com/images/word2vec-skip-gram.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Bowen He&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Bowen He&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">劝君惜取少年时.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Word2Vec" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/13/Word2Vec/" class="article-date">
+  <time datetime="2017-11-14T07:45:00.000Z" itemprop="datePublished">2017-11-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Word2Vec模型
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Word2Vec模型"><a href="#Word2Vec模型" class="headerlink" title="Word2Vec模型"></a>Word2Vec模型</h1><h3 id="Stanford-cs224n-2017-lecture2课堂笔记（1）-自己的理解"><a href="#Stanford-cs224n-2017-lecture2课堂笔记（1）-自己的理解" class="headerlink" title="Stanford cs224n 2017 lecture2课堂笔记（1）+ 自己的理解"></a>Stanford cs224n 2017 lecture2课堂笔记（1）+ 自己的理解</h3><p>Reference:</p>
+<p><a href="https://web.stanford.edu/class/cs224n/lectures/cs224n-2017-lecture2.pdf" target="_blank" rel="external">https://web.stanford.edu/class/cs224n/lectures/cs224n-2017-lecture2.pdf</a></p>
+<p><a href="https://blog.acolyer.org/2016/04/21/the-amazing-power-of-word-vectors/?blogsub=confirming#subscribe-blog" target="_blank" rel="external">https://blog.acolyer.org/2016/04/21/the-amazing-power-of-word-vectors/?blogsub=confirming#subscribe-blog</a></p>
+<p>正式开笔前，说说废话，下定决心把Stanford这个系列的课上一遍，好好打打自然语言处理的基础，而又因为纯听课的效果对我而言比不上同时更blog做笔记来得好，因此每日多花些时间来写一写。</p>
+<h3 id="Why-word2vec"><a href="#Why-word2vec" class="headerlink" title="Why word2vec?"></a>Why word2vec?</h3><p>说到用vector来表达词，一种很常见的方法是离散化的表达，比如one-hot representation, 什么one-hot representation? 假设一个大词库有N个词，想表达Xi, 那么我们就定义一个维度为N的vector，除了第i位为1，其他全为0，举个例子吧：</p>
+<p>词库：I have a computer.</p>
+<p>每个词的vector为如下形式：</p>
+<p>I: [1, 0, 0, 0]</p>
+<p>have: [0, 1, 0, 0]</p>
+<p>a: [0, 0, 1, 0]</p>
+<p>computer: [0, 0, 0, 1]</p>
+<p>可是这样离散化表达有什么缺点呢？</p>
+<ol>
+<li>假设词库很大很大，那么每个词的vector就会很长，后期计算量也会很大，导致我们的模型难以训练；</li>
+<li>离散化表达难以体现词和词之间的相互关系，比如一个大的词库里，频繁出现“面膜 护肤”等词，按以上的离散化表达，两个one-hot vector向量的dot multiplication(点乘)是0，难以用cosine等方式计算词和词的相似性。</li>
+</ol>
+<p>于是～word2vec模型上线，相对于离散化的表达(discrete representation)， word2vec模型属于分布式表达（distributional representation)，which means “distribution of weights across weight”， 也就是说，区别于长度为整个词库数量N的vector，通常用来表示每个词的vector的维数不会很大，而每个element都有一个数，例如lingusitic: [0.7, 0.3, 0.1, 0.2, 0.5]， 这个vector称为词向量，而从单词map到vector这一步，称为word embedding。可见，word2vec通过使用较小维度的vector降低了训练模型需要的space and time complexity，词向量可以通过multiplication(点乘)计算相似性。</p>
+<h3 id="两个算法"><a href="#两个算法" class="headerlink" title="两个算法"></a>两个算法</h3><h5 id="Skip-grams-SG"><a href="#Skip-grams-SG" class="headerlink" title="Skip-grams(SG)"></a>Skip-grams(SG)</h5><p>这个算法，是根据给定的词预测词上下文: target -&gt; context</p>
+<p>input layer是给定的词，output layer是预测的词上下文，盗了一张参考链接的图：</p>
+<p>（原图地址：<a href="https://blog.acolyer.org/2016/04/21/the-amazing-power-of-word-vectors/?blogsub=confirming#subscribe-blog" target="_blank" rel="external">https://blog.acolyer.org/2016/04/21/the-amazing-power-of-word-vectors/?blogsub=confirming#subscribe-blog</a>)</p>
+<p><img src="/images/word2vec-skip-gram.png" alt=""></p>
+<p>在这个模型里，我们把给定的词用one-hot representation表示，vector的长度V即为词库的词数，从input layer映射到hidden layer，我们需要初始化一个W1(VxN)将one-hot转成词向量，因为one-hot的特殊性质举例：[1, 0, 0, 0]，除了特定位置为1，其他位置都为0，因此这个转换词向量的过程，仅仅需要将词向量元素=1的对应的Wmatrix那一行copy就好了，再将hidden layer层乘以W2，得到C个v维词向量，C为word context的词数，每个词向量中，对应位置对高概率的那个词，即为预测词。</p>
+<h5 id="Continuous-Bag-of-Words-CBOW"><a href="#Continuous-Bag-of-Words-CBOW" class="headerlink" title="Continuous Bag of Words(CBOW)"></a>Continuous Bag of Words(CBOW)</h5><p>和skip-gram相反，CBOW根据词上下文环境(word context)来预测这个环境中缺失的那个词，举例</p>
+<p>I was born in _, so my native language is Madarine. 这里很明显缺失的那个词为China, 而整个语句为word context，我们的output就是要预测的缺失的词。</p>
+<p>再盗图一张，来自相同reference链接。</p>
+<p><img src="/images/word2vec-cbow.png" alt=""></p>
+<p>在这个模型中，input layer中输入的是给定word context中所有词(C个)的one-hot vector(V)，与weights矩阵W1(VxN)相乘，分别得到多词向量vector(N), 取平均值即为hidden layer，再由hidden layer乘以weights矩阵W2(NxV)得到output词向量v，维度为V，最高分数的那一维度对应的词就是predict word。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/11/13/Word2Vec/" data-id="cj9zc51ao0003sklv6qlb71s9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/11/09/python_script_function/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">一些python function总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/深度学习/" style="font-size: 15px;">深度学习</a> <a href="/tags/爬虫/" style="font-size: 20px;">爬虫</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/11/13/Word2Vec/">Word2Vec模型</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/09/python_script_function/">一些python function总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/04/kaggle_dog_breed_idnentification/">kaggle dog breed identification基于Tensorflow迁移学习搭建图片分类器</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/26/一些在爬虫中用到的python tricks/">爬虫笔记4</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/25/Avoid Scraper Trapper/">爬虫笔记3</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Bowen He<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
