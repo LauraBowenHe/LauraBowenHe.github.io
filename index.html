@@ -121,8 +121,10 @@
 <p>缺点：协同过滤的算法，往往会更倾向推荐热门的歌单，使得一些小众的歌得不到重视。</p>
 <h3 id="Task1-Subtask-2-3-4-5-6"><a href="#Task1-Subtask-2-3-4-5-6" class="headerlink" title="Task1-Subtask 2,3,4,5,6"></a>Task1-Subtask 2,3,4,5,6</h3><p>上面提到，我们根据不同子任务的数据特性，将2，3，4，5，6这五种子任务，归为同一种任务，按同一算法来推荐；所用的主要方法就是based on item collaborative filtering, 这个方法几乎用在了除子任务1以外的每个子任务：</p>
 <p>先根据提供的MSD data构建一个大的item-user矩阵，MSD data中共有100万个歌单，和2262292首distinct的单曲，歌单即是user，单曲即是item，那么这里把所有原始数据构造成了一个大的[2262292, 1000000]的矩阵，本文以后将简称这个矩阵为大矩阵， 注意，就像绝大多数推荐系统的item-user矩阵一样，这个大矩阵有很强的稀疏性，如果初始化用一个稠密矩阵去做，很可能内存就爆了，我们采用了稀疏矩阵的办法，极大的节省了内存</p>
-<p>`<br>    import scipy.sparse as sp</p>
-<pre><code>mat = sp.dok_matrix((2262292, 1000000), dtype=np.float32)
+<p>`</p>
+<pre><code>import scipy.sparse as sp
+
+mat = sp.dok_matrix((2262292, 1000000), dtype=np.float32)
 
 for song, pids in dic.items():
 
@@ -165,7 +167,7 @@ mat = mat.tocsr().sorted_indices()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/15/Recsys-Spotify-2018-Challenge/" data-id="cjjmy51rg00032alvdhlfh1sp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/15/Recsys-Spotify-2018-Challenge/" data-id="cjjmyer8q00052slv3qszqlq1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/推荐系统/">推荐系统</a></li></ul>
@@ -230,7 +232,7 @@ mat = mat.tocsr().sorted_indices()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/13/Word2Vec/" data-id="cjjmy51rl00052alv3svmxc7v" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/11/13/Word2Vec/" data-id="cjjmyer8n00042slvm7s6zi63" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
@@ -275,7 +277,7 @@ mat = mat.tocsr().sorted_indices()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/09/python_script_function/" data-id="cjjmy51s2000h2alv8ge4ym5o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/11/09/python_script_function/" data-id="cjjmyer96000h2slvnzzcyd63" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
@@ -368,7 +370,7 @@ mat = mat.tocsr().sorted_indices()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/04/kaggle_dog_breed_idnentification/" data-id="cjjmy51rz000c2alv36huncgi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/11/04/kaggle_dog_breed_idnentification/" data-id="cjjmyer93000c2slvn4obfq7p" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
@@ -439,7 +441,7 @@ mat = mat.tocsr().sorted_indices()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/26/一些在爬虫中用到的python tricks/" data-id="cjjmy51s5000j2alv582reygo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/06/26/一些在爬虫中用到的python tricks/" data-id="cjjmyer9a000j2slv9f7txnrr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
@@ -496,7 +498,7 @@ mat = mat.tocsr().sorted_indices()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/25/Avoid Scraper Trapper/" data-id="cjjmy51r300002alvnv6zlzm6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/06/25/Avoid Scraper Trapper/" data-id="cjjmyer8b00002slvi3h6bui2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
@@ -546,7 +548,7 @@ mat = mat.tocsr().sorted_indices()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/24/handling redirects/" data-id="cjjmy51ru00092alvbzr4aw2a" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/06/24/handling redirects/" data-id="cjjmyer8x00092slvedycvlvv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
@@ -634,7 +636,7 @@ String popStack(Stack&lt;Object&gt; stack){
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/22/Expression Expand/" data-id="cjjmy51r900012alvlme1who0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/06/22/Expression Expand/" data-id="cjjmyer8f00012slv68dolxg6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
@@ -767,7 +769,7 @@ class Node implements Comparable&lt;Node&gt;{
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/22/Sliding Window Median/" data-id="cjjmy51ri00042alvjv8l8w8f" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/06/22/Sliding Window Median/" data-id="cjjmyer8l00032slvnriv0mv1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
@@ -828,7 +830,7 @@ class Node implements Comparable&lt;Node&gt;{
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/21/爬虫中遇到的登录login和form/" data-id="cjjmy51sa000m2alvbj9um7gu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/06/21/爬虫中遇到的登录login和form/" data-id="cjjmyer9c000m2slvlgaxrypj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>

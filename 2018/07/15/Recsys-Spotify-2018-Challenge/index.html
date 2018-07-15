@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/07/15/Recsys-Spotify-2018-Challenge/index.html">
 <meta property="og:site_name" content="Bowen He&#39;s Blog">
 <meta property="og:description" content="写在前面ACM（国际计算机学会）主办的推荐系统专场（Recsys）是推荐系统圈子的顶级会议，2018年ACM和spotify联合举办的Recsys challenge，本次比赛一共分为两个track，main track，只能用比赛方提供的数据，creative track，除了比赛方提供的数据还可以用外部数据。我和队友们在本次比赛的main track中，取得public board第六名的成绩">
-<meta property="og:updated_time" content="2018-07-15T14:39:34.978Z">
+<meta property="og:updated_time" content="2018-07-15T14:46:56.022Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Recsys-Spotify-2018-Challenge比赛总结">
 <meta name="twitter:description" content="写在前面ACM（国际计算机学会）主办的推荐系统专场（Recsys）是推荐系统圈子的顶级会议，2018年ACM和spotify联合举办的Recsys challenge，本次比赛一共分为两个track，main track，只能用比赛方提供的数据，creative track，除了比赛方提供的数据还可以用外部数据。我和队友们在本次比赛的main track中，取得public board第六名的成绩">
@@ -124,8 +124,10 @@
 <p>缺点：协同过滤的算法，往往会更倾向推荐热门的歌单，使得一些小众的歌得不到重视。</p>
 <h3 id="Task1-Subtask-2-3-4-5-6"><a href="#Task1-Subtask-2-3-4-5-6" class="headerlink" title="Task1-Subtask 2,3,4,5,6"></a>Task1-Subtask 2,3,4,5,6</h3><p>上面提到，我们根据不同子任务的数据特性，将2，3，4，5，6这五种子任务，归为同一种任务，按同一算法来推荐；所用的主要方法就是based on item collaborative filtering, 这个方法几乎用在了除子任务1以外的每个子任务：</p>
 <p>先根据提供的MSD data构建一个大的item-user矩阵，MSD data中共有100万个歌单，和2262292首distinct的单曲，歌单即是user，单曲即是item，那么这里把所有原始数据构造成了一个大的[2262292, 1000000]的矩阵，本文以后将简称这个矩阵为大矩阵， 注意，就像绝大多数推荐系统的item-user矩阵一样，这个大矩阵有很强的稀疏性，如果初始化用一个稠密矩阵去做，很可能内存就爆了，我们采用了稀疏矩阵的办法，极大的节省了内存</p>
-<p>`<br>    import scipy.sparse as sp</p>
-<pre><code>mat = sp.dok_matrix((2262292, 1000000), dtype=np.float32)
+<p>`</p>
+<pre><code>import scipy.sparse as sp
+
+mat = sp.dok_matrix((2262292, 1000000), dtype=np.float32)
 
 for song, pids in dic.items():
 
@@ -168,7 +170,7 @@ mat = mat.tocsr().sorted_indices()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/15/Recsys-Spotify-2018-Challenge/" data-id="cjjmy51rg00032alvdhlfh1sp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/15/Recsys-Spotify-2018-Challenge/" data-id="cjjmyer8q00052slv3qszqlq1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/推荐系统/">推荐系统</a></li></ul>
