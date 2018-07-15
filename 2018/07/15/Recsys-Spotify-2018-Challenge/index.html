@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Recsys-Spotify-2018-Challenge比赛总结 | Bowen He&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="写在前面ACM（国际计算机学会）主办的推荐系统专场（Recsys）是推荐系统圈子的顶级会议，2018年ACM和spotify联合举办的Recsys challenge，本次比赛一共分为两个track，main track，只能用比赛方提供的数据，creative track，除了比赛方提供的数据还可以用外部数据。我和队友们在本次比赛的main track中，取得public board第六名的成绩">
+<meta name="keywords" content="推荐系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Recsys-Spotify-2018-Challenge比赛总结">
+<meta property="og:url" content="http://yoursite.com/2018/07/15/Recsys-Spotify-2018-Challenge/index.html">
+<meta property="og:site_name" content="Bowen He&#39;s Blog">
+<meta property="og:description" content="写在前面ACM（国际计算机学会）主办的推荐系统专场（Recsys）是推荐系统圈子的顶级会议，2018年ACM和spotify联合举办的Recsys challenge，本次比赛一共分为两个track，main track，只能用比赛方提供的数据，creative track，除了比赛方提供的数据还可以用外部数据。我和队友们在本次比赛的main track中，取得public board第六名的成绩">
+<meta property="og:updated_time" content="2018-07-15T14:35:58.402Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Recsys-Spotify-2018-Challenge比赛总结">
+<meta name="twitter:description" content="写在前面ACM（国际计算机学会）主办的推荐系统专场（Recsys）是推荐系统圈子的顶级会议，2018年ACM和spotify联合举办的Recsys challenge，本次比赛一共分为两个track，main track，只能用比赛方提供的数据，creative track，除了比赛方提供的数据还可以用外部数据。我和队友们在本次比赛的main track中，取得public board第六名的成绩">
+  
+    <link rel="alternate" href="/atom.xml" title="Bowen He&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Bowen He&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">劝君惜取少年时.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Recsys-Spotify-2018-Challenge" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/15/Recsys-Spotify-2018-Challenge/" class="article-date">
+  <time datetime="2018-07-15T14:20:00.000Z" itemprop="datePublished">2018-07-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Recsys-Spotify-2018-Challenge比赛总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>ACM（国际计算机学会）主办的推荐系统专场（Recsys）是推荐系统圈子的顶级会议，2018年ACM和spotify联合举办的Recsys challenge，本次比赛一共分为两个track，main track，只能用比赛方提供的数据，creative track，除了比赛方提供的数据还可以用外部数据。我和队友们在本次比赛的main track中，取得public board第六名的成绩，整个比赛，感谢我的老板兼队友提供的很多很好的idea，也让我对数据挖掘有了很多新的思考，这条路还需要很多持之以恒的努力。</p>
+<p><a href="http://www.recsyschallenge.com/2018/" target="_blank" rel="external">http://www.recsyschallenge.com/2018/</a></p>
+<h2 id="赛题描述"><a href="#赛题描述" class="headerlink" title="赛题描述"></a>赛题描述</h2><h3 id="数据描述"><a href="#数据描述" class="headerlink" title="数据描述"></a>数据描述</h3><p>本次比赛由ACM Recsys和Spotify联合举办的recsys challenge，赛题给定了一百万的歌单数据集，版权由spotify所有，本文之后将简称该数据集为MSD，具体数据详情见以下：</p>
+<p>每个歌单metadata包括</p>
+<p>playlist_duration,  歌单整体时长</p>
+<p>playlist_title, 歌单名称</p>
+<p>track_num, 歌单的单曲数量</p>
+<p>last_modified_time, 最后一次修改歌单的时间</p>
+<p>track, 每首单曲</p>
+<p> each track’s position in the playlist, 每首单曲在歌单中的位置</p>
+<p>每首单曲的metadata包括</p>
+<p>track_name,  单曲歌名</p>
+<p>track_duration, 单曲时长</p>
+<p>artist, 单曲歌手</p>
+<p>album, 单曲所属专辑</p>
+<h3 id="任务描述"><a href="#任务描述" class="headerlink" title="任务描述"></a>任务描述</h3><p>比赛的大目标，即是自动延续歌单，给定一个歌单，歌单已经含有1-250首歌不等，要求预测出500首更高概率会出现在歌单里的单曲，按概率从高到低提交，这个任务在研究领域有个专业名称，playlist auto continuation,  本次比赛分为十个子任务：</p>
+<ol>
+<li>只给定歌单名，预测500首单曲；</li>
+<li>给定歌单名，给定最top的1首歌，预测500首单曲；</li>
+<li>给定歌单名，给定按顺序出现的最top的5首歌，预测500首单曲；</li>
+<li>不给歌单名，给定按顺序出现的最top的5首歌，预测500首单曲；</li>
+<li>给定歌单名，给定按顺序出现的最top的10首歌，预测500首单曲；</li>
+<li>不给歌单名，给定按顺序出现的最top的10首歌，预测500首单曲；</li>
+<li>给定按顺序出现的最top的25首歌，预测500首单曲；</li>
+<li>给定歌单随机位置的25首歌，预测500首单曲；</li>
+<li>给定按顺序出现的最top的100首歌，预测500首单曲；</li>
+<li>给定歌单随机位置的100首歌，预测500首单曲。</li>
+</ol>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p>因为此次比赛属于推荐性质的问题，大方法上，我们采用的是based-on item collaborative filtering, 针对赛题里十个子任务各自的特性，我们将十个子任务按其数据特性，分为4种case，对原有cf算法作了4个不同的改进。也是这次比赛，更让我体会到这类推荐任务，甚至数据挖掘想做好的前提，就是要深刻理解数据，根据数据的特性，来采用有效的方法，想起上周同一个比赛，老板eda发现的magic feature，提升了3个百分点，扯远了…</p>
+<h3 id="Based-On-Item-Collaborative-Filtering"><a href="#Based-On-Item-Collaborative-Filtering" class="headerlink" title="Based-On Item Collaborative Filtering"></a>Based-On Item Collaborative Filtering</h3><p>这个算法不作过多介绍，推荐算法老牌战斗机，简单概述就是，如果很多user喜欢item A, B, C，那么对于喜欢itemA, B的user，我给他也推荐C，简单的逻辑，好用的算法；</p>
+<p>优点：相比based-on user collaborative filtering, based-on item计算更加efficency，因为绝大数多场景，user的数量总是远远过于item的，另外因为user的偏好往往更多元，举个例子，一个人喜欢听周杰伦的‘告白气球’，他也可能喜欢听钢琴曲‘土耳其进行曲’，这是很常见的，可是这两首歌在同一歌单出现的概率，应该不太大，同一歌单中的单曲，应该总有某个部分的相似性，促使它们被放在同一歌单。</p>
+<p>缺点：协同过滤的算法，往往会更倾向推荐热门的歌单，使得一些小众的歌得不到重视。</p>
+<h3 id="Task1-Subtask-2-3-4-5-6"><a href="#Task1-Subtask-2-3-4-5-6" class="headerlink" title="Task1-Subtask 2,3,4,5,6"></a>Task1-Subtask 2,3,4,5,6</h3><p>上面提到，我们根据不同子任务的数据特性，将2，3，4，5，6这五种子任务，归为同一种任务，按同一算法来推荐；所用的主要方法就是based on item collaborative filtering, 这个方法几乎用在了除子任务1以外的每个子任务：</p>
+<p>先根据提供的MSD data构建一个大的item-user矩阵，MSD data中共有100万个歌单，和2262292首distinct的单曲，歌单即是user，单曲即是item，那么这里把所有原始数据构造成了一个大的[2262292, 1000000]的矩阵，本文以后将简称这个矩阵为大矩阵， 注意，就像绝大多数推荐系统的item-user矩阵一样，这个大矩阵有很强的稀疏性，如果初始化用一个稠密矩阵去做，很可能内存就爆了，我们采用了稀疏矩阵的办法，极大的节省了内存</p>
+<p>`<br>    import scipy.sparse as sp</p>
+<pre><code>mat = sp.dok_matrix((2262292, 1000000), dtype=np.float32)
+
+for song, pids in dic.items():
+
+​    for pid in pids:
+
+​        mat[song, pid] = 1
+
+mat = mat.tocsr().sorted_indices()
+</code></pre><p>`</p>
+<p>假定歌单中有[A, B, C, D, E]五首歌，先计算A和所有歌曲（2262292）每首歌的相似度，这里的相似度就是依赖A和每首歌曲的共同歌单的数量，对于A和任一单曲，song1，假设只有单曲A出现在歌单list1, list2, list3，song1出现在歌单list3， list4，那么A和song1共同歌单的数量就是1，对song1的打分就是1，依次用A去对2262292每首歌计算共同歌曲分数；再用B去对2262292每首歌计算共同歌曲分数，接着C, D, E，把每首歌的5个结果求平均，再按每首歌得分从高到低排列，选取除掉已出现在歌单中的[A, B, C, D, E]五首歌，剩下的top500，即为我们的推荐歌单；</p>
+<p>但这里的问题是，仅仅用共同歌单数，会导致那些热门歌曲，出现在很多歌单的歌，有更高的概率被推荐，这个时候热门的因素会胜过相似的因素，怎么办？很自然可以想到，我们可以用共同歌单数量，除以每首歌各自出现的歌单数量；这样不就可以平衡热门单曲的因素了吗。</p>
+<p>在这个思路上，我们参考了这位大佬的论文：</p>
+<p><a href="http://www.ke.tu-darmstadt.de/events/PL-12/papers/08-aiolli.pdf" target="_blank" rel="external">http://www.ke.tu-darmstadt.de/events/PL-12/papers/08-aiolli.pdf</a></p>
+<p>大佬在论文提出了一个创新的公式，简单概括，这个公式的分母除以了这首歌和被推荐的歌的出现频率的n次方的积；这样可以很好的平衡掉热门歌曲的因素，使得一些小众歌也可以被“平等对待”；</p>
+<p>大佬的源码也给出来了，给了我们很好的参考，我们在此基础上作了修改和一些优化，因为我们的数据集更大，同时很稀疏，我们采用了稀疏矩阵方式进行计算，极大的提高了计算速度。</p>
+<h3 id="Task2-Subtask-7-9"><a href="#Task2-Subtask-7-9" class="headerlink" title="Task2-Subtask 7,9"></a>Task2-Subtask 7,9</h3><p>这两个子任务都是给定一个歌单的前n首歌，来预测推荐的500首歌。相比之前只给1首歌，5首歌，10首歌，这里的25首歌和100首歌会有一定的序列特征，这个比赛最有意思的地方，就是同一大任务下小任务各自的数据特性，深入挖掘数据特性，应数据制宜，才是提高推荐效果的关键。怎么利用这里的序列特性？之前在Task1中采用的算法，歌单的每首歌都被同等对待了，所有歌曲中一首歌和这整个歌单的相似度，由这首歌和歌单每首歌相似度的平均值来计算；但这里，我们对在靠近尾部的歌，其计算的相似度给了更高的权重，之前是简单的average, 加权重以后变成了weighted average.</p>
+<h3 id="Task3-Subtask-8-10"><a href="#Task3-Subtask-8-10" class="headerlink" title="Task3-Subtask 8, 10"></a>Task3-Subtask 8, 10</h3><p>这两个子任务是给定一个歌单随机位置的n首歌，来预测推荐的500首歌。我们在基本算法的基础上，应用上了SLIM。</p>
+<h3 id="Task4-Subtask-1"><a href="#Task4-Subtask-1" class="headerlink" title="Task4-Subtask 1"></a>Task4-Subtask 1</h3><p> 之所以把子任务1放到最后来写，是因为这里有很有意思的创新，分享出来希望也能帮到大家。我们以上的基本算法是根据单曲-歌单的共现关系计算相似度进而推荐，但子任务1只给定了歌单名，除此之外没有过多的信息。我们想到，歌单的名字在一定程度上和歌单里的单曲是有很大的关系的，比如一个歌单叫”爱的进行时“，那很大程度，它含有大量的爱情相关的单曲，比如”告白气球“，比如”你问我爱你有多深“，等等；这个时候另一个歌单叫”爱的故事“，那这两个歌单在单曲上应该会有相当大的一部分交集，也就是说，歌单的词-单曲的共现关系也是可以用起来的！延续基本算法，我们构建了词-单曲的稀疏矩阵，作了类似cf的算法，来说说实现细节：</p>
+<p>（1）首先是这些歌单名作了一些简单的自然语言处理，pipeline如下：</p>
+<p>lower words -&gt; remove repetition characters -&gt; remove special characters</p>
+<p>先小写所有字母，去除一个单词中连续重复出现2次以上的字母，只保留一个，最后去掉一些字母以外的特殊符号，这里因为都是英文所以不需要分词处理，source code也给出来了，参考着一个kaggle大佬的kernel写的</p>
+<p><a href="https://github.com/LauraBowenHe/Recsys-Spotify-2018-challenge/blob/master/src/utilities/title_preprocess.py#L7" target="_blank" rel="external">https://github.com/LauraBowenHe/Recsys-Spotify-2018-challenge/blob/master/src/utilities/title_preprocess.py#L7</a></p>
+<p>（2）我们在第一步处理完，可以得到clean title，这个时候，根据所有单词的unique数量，和所有单曲的数量，做一个 词-单曲的稀疏矩阵，矩阵shape是[词数量，单曲数量2262292]，假设歌单名叫’party’，把’party’这个词那一行，对应的该歌单所有出现的单曲的位置+1，当另一个歌单叫’party dance’，我们把’party’和‘dance‘对应的两行，对应的该歌单所有出现的单曲的位置+1，这样在最终预测时，比如歌单名叫’happy party’, 我们找到’happy’和’party’对应的那两行，[2, 2262292]的相似度小矩阵，求平均，得到[1,2262292]的相似度矩阵，然后和之前一样，按概率从高到低选取top500。</p>
+<h2 id="一些赛后想到的idea"><a href="#一些赛后想到的idea" class="headerlink" title="一些赛后想到的idea"></a>一些赛后想到的idea</h2><p>赛后感觉还是有很多可以提高的方法：</p>
+<p>task 4中自然语言处理的那部分可以做得再细一点，比如去掉停用词；比如词性stemmerazation和lemmatization，这个在nltk都是有现成的python包的，可以直接调用；</p>
+<p>再比如歌单名找词的时候，遇到没有对应词的情况，我直接返回了随机的500首，其实可以用一些fasttext预训练的word embedding, 找出现在矩阵中词集合最相似的近义词；</p>
+<p>有一点遗憾，可能加上这些方法，应该会取得更好的名次，但学习的路漫漫，持之以恒才是王道呀。</p>
+<h2 id="一些不大成功的尝试"><a href="#一些不大成功的尝试" class="headerlink" title="一些不大成功的尝试"></a>一些不大成功的尝试</h2><h3 id="word2vec"><a href="#word2vec" class="headerlink" title="word2vec"></a>word2vec</h3><p>word2vec其实本质用得也是单曲间共现的关系；类似文本，我们把每个歌单当作一个document，把每首歌当做一个单词，扔到gensim word2vec模型去训练，然后找和歌单中出现的单曲集合最相似的不包含歌单单曲的500首单曲，gensim把代码封装的很好，直接将这个集合丢进去就可以了，不需要每首歌依次计算求平均，这里的代码也分享出来吧</p>
+<p>训练的：</p>
+<p><a href="https://github.com/LauraBowenHe/Recsys-Spotify-2018-challenge/blob/master/try/word2vec.py" target="_blank" rel="external">https://github.com/LauraBowenHe/Recsys-Spotify-2018-challenge/blob/master/try/word2vec.py</a></p>
+<p>预测的：</p>
+<p><a href="https://github.com/LauraBowenHe/Recsys-Spotify-2018-challenge/blob/master/try/prediction_v12.py" target="_blank" rel="external">https://github.com/LauraBowenHe/Recsys-Spotify-2018-challenge/blob/master/try/prediction_v12.py</a></p>
+<p>但效果并没有协同过滤好，印象中r-precision相差3～4个百分点。</p>
+<h3 id="ensemble-cf"><a href="#ensemble-cf" class="headerlink" title="ensemble cf"></a>ensemble cf</h3><p>我们想到，既然能用单曲-歌单的关系，那么artist-歌单的关系，album-歌单的关系，应该都能用吧，计算出来的相似度加权平均效果应该会更好，但实验结果发现，ensemble并无显示提高，有时候甚至有一点点下降，可能的原因，只利用这些例如单曲-歌单的共现关系的话，单曲中已经涵盖了artist和album的信息，很有可能再单独加入使得信息冗余，进而降低准确率。</p>
+<h3 id="star-embedding"><a href="#star-embedding" class="headerlink" title="star embedding"></a>star embedding</h3><p>facebook发了一篇很牛逼的论文，大概是说embedding everything，相关代码也开源了，尝试了一下不是很会用。。时间紧迫就没有作过多的探索放弃了</p>
+<h2 id="其他选手的方法"><a href="#其他选手的方法" class="headerlink" title="其他选手的方法"></a>其他选手的方法</h2><p>因为举办方要求所有参赛选手把代码开源，于是上github欣赏了一下其他参赛选手的方法，看到挺有意思的也作了简单的总结：</p>
+<p>今天太累了…</p>
+<p>待续…</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/07/15/Recsys-Spotify-2018-Challenge/" data-id="cjjmy12qi00011mlv96h7t3ml" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/推荐系统/">推荐系统</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/11/13/Word2Vec/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Word2Vec模型</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推荐系统/">推荐系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/推荐系统/" style="font-size: 10px;">推荐系统</a> <a href="/tags/深度学习/" style="font-size: 15px;">深度学习</a> <a href="/tags/爬虫/" style="font-size: 20px;">爬虫</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/15/Recsys-Spotify-2018-Challenge/">Recsys-Spotify-2018-Challenge比赛总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/13/Word2Vec/">Word2Vec模型</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/09/python_script_function/">一些python function总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/04/kaggle_dog_breed_idnentification/">kaggle dog breed identification基于Tensorflow迁移学习搭建图片分类器</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/26/一些在爬虫中用到的python tricks/">爬虫笔记4</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Bowen He<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

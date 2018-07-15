@@ -65,10 +65,89 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-leetcode:lintcode刷题系－Trapping Rain Water 类问题的分析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/21/leetcode:lintcode刷题系－Trapping Rain Water 类问题的分析/" class="article-date">
+  <time datetime="2017-06-21T06:20:00.000Z" itemprop="datePublished">2017-06-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/21/leetcode:lintcode刷题系－Trapping Rain Water 类问题的分析/">leetcode/lintcode刷题系－Trapping Rain Water 类问题的分析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Trapping Rain Water: Given <em>n</em> non-negative integers representing an elevation map where the width of each bar is <code>1</code>, compute how much water it is able to trap after raining.</p>
+<p><strong>Example</strong>: Given <code>[0,1,0,2,1,0,1,3,2,1,2,1]</code>, return <code>6</code>.</p>
+<p><a href="http://www.lintcode.com/en/problem/trapping-rain-water/" target="_blank" rel="external"></a></p>
+<p>对于这道灌水题，因为水只有在凹槽中才能储存，因此可以用左右两个指针，一个指着array最左端，一个指着array最右端，分别标记此时左右两端的高度lheight, rheight, <u>取两个值中的较小值，假设是lheight，这个高度便是我们的“灌水基调”，使这个bar的指针往中间移动，，指向下一个bar，当下一个bar高度小于当前“灌水基调”，那么这个位置是可以储存住水的，两者高度差就是灌水量，而若下一个bar高度大于当前”灌水基调“，那么我们更新lheight为当前bar的高度</u>，进入下一次循环，划线部分重复，直到左右指针相交。</p>
+<p>`</p>
+<pre><code>public class Solution {
+/**
+ * @param heights: an array of integers
+ * @return: a integer
+ */
+public int trapRainWater(int[] heights) {
+    // write your code here
+    /* check if input is valid */
+    int left = 0, right = heights.length-1, res = 0;
+    if(heights == null || heights.length == 0){
+        return res;
+    }
+
+    int leftHeight = heights[left];
+    int rightHeight = heights[right];
+    while(left &lt; right){
+        if(leftHeight &lt; rightHeight){
+            left++;
+            if(heights[left] &lt; leftHeight){
+                res += leftHeight-heights[left];
+            }else{
+                leftHeight = heights[left];
+            }
+        }else{
+            right--;
+            if(heights[right] &lt; rightHeight){
+                res += rightHeight-heights[right];
+            }else{
+                rightHeight = heights[right];
+            }
+        }
+    }
+
+    return res;
+}
+</code></pre><p>`</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/21/leetcode:lintcode刷题系－Trapping Rain Water 类问题的分析/" data-id="cjjmy12r6000e1mlvacxq0wb7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-first-one" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/06/12/first-one/" class="article-date">
-  <time datetime="2017-06-12T22:52:57.000Z" itemprop="datePublished">2017-06-12</time>
+  <time datetime="2017-06-12T07:52:57.000Z" itemprop="datePublished">2017-06-12</time>
 </a>
     
   </div>
@@ -92,7 +171,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/12/first-one/" data-id="cj9zc6qaj0005t9lvlimrkaeq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/06/12/first-one/" data-id="cjjmy12qq00041mlvdus0xlz3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
@@ -120,7 +199,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推荐系统/">推荐系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
     </div>
   </div>
 
@@ -130,7 +209,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/深度学习/" style="font-size: 15px;">深度学习</a> <a href="/tags/爬虫/" style="font-size: 20px;">爬虫</a>
+      <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/推荐系统/" style="font-size: 10px;">推荐系统</a> <a href="/tags/深度学习/" style="font-size: 15px;">深度学习</a> <a href="/tags/爬虫/" style="font-size: 20px;">爬虫</a>
     </div>
   </div>
 
@@ -139,7 +218,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
     </div>
   </div>
 
@@ -150,6 +229,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/07/15/Recsys-Spotify-2018-Challenge/">Recsys-Spotify-2018-Challenge比赛总结</a>
+          </li>
         
           <li>
             <a href="/2017/11/13/Word2Vec/">Word2Vec模型</a>
@@ -167,10 +250,6 @@
             <a href="/2017/06/26/一些在爬虫中用到的python tricks/">爬虫笔记4</a>
           </li>
         
-          <li>
-            <a href="/2017/06/25/Avoid Scraper Trapper/">爬虫笔记3</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -183,7 +262,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Bowen He<br>
+      &copy; 2018 Bowen He<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
