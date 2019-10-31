@@ -3,14 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2018 | Bowen He&#39;s Blog</title>
+  <title>Dueling DQN论文精度 | Bowen He&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Bowen He&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2018/index.html">
+  <meta name="description" content="Dueling Network Architecture for Deep Reinforcement Learning 论文精读导读 本文主要对论文Dueling DQN https://arxiv.org/pdf/1511.06581.pdf 提出的背景知识，解决的问题，带来的优势及其原因进行一些解读和分享。 从Q-Learning到DQN强化学习入门先学习了Q-Learning，因为stat">
+<meta name="keywords" content="强化学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dueling DQN论文精度">
+<meta property="og:url" content="http://yoursite.com/2019/10/31/Dueling DQN/index.html">
 <meta property="og:site_name" content="Bowen He&#39;s Blog">
+<meta property="og:description" content="Dueling Network Architecture for Deep Reinforcement Learning 论文精读导读 本文主要对论文Dueling DQN https://arxiv.org/pdf/1511.06581.pdf 提出的背景知识，解决的问题，带来的优势及其原因进行一些解读和分享。 从Q-Learning到DQN强化学习入门先学习了Q-Learning，因为stat">
+<meta property="og:updated_time" content="2019-10-31T13:11:40.104Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Bowen He&#39;s Blog">
+<meta name="twitter:title" content="Dueling DQN论文精度">
+<meta name="twitter:description" content="Dueling Network Architecture for Deep Reinforcement Learning 论文精读导读 本文主要对论文Dueling DQN https://arxiv.org/pdf/1511.06581.pdf 提出的背景知识，解决的问题，带来的优势及其原因进行一些解读和分享。 从Q-Learning到DQN强化学习入门先学习了Q-Learning，因为stat">
   
     <link rel="alternate" href="/atom.xml" title="Bowen He&#39;s Blog" type="application/atom+xml">
   
@@ -63,39 +68,61 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/07/15/Recsys-Spotify-2018-Challenge/" class="archive-article-date">
-  <time datetime="2018-07-15T14:20:00.000Z" itemprop="datePublished">Jul 15</time>
+        <section id="main"><article id="post-Dueling DQN" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/31/Dueling DQN/" class="article-date">
+  <time datetime="2019-10-31T13:10:00.000Z" itemprop="datePublished">2019-10-31</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/15/Recsys-Spotify-2018-Challenge/">Recsys-Spotify-2018-Challenge比赛总结</a>
+    <h1 class="article-title" itemprop="name">
+      Dueling DQN论文精度
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Dueling-Network-Architecture-for-Deep-Reinforcement-Learning-论文精读"><a href="#Dueling-Network-Architecture-for-Deep-Reinforcement-Learning-论文精读" class="headerlink" title="Dueling Network Architecture for Deep Reinforcement Learning 论文精读"></a>Dueling Network Architecture for Deep Reinforcement Learning 论文精读</h1><p>导读</p>
+<p>本文主要对论文Dueling DQN <a href="https://arxiv.org/pdf/1511.06581.pdf" target="_blank" rel="external">https://arxiv.org/pdf/1511.06581.pdf</a> 提出的背景知识，解决的问题，带来的优势及其原因进行一些解读和分享。</p>
+<h2 id="从Q-Learning到DQN"><a href="#从Q-Learning到DQN" class="headerlink" title="从Q-Learning到DQN"></a>从Q-Learning到DQN</h2><p>强化学习入门先学习了Q-Learning，因为states可能有千千万万，对应states*action个q-value值，随着states的增加，会有内存不够的问题。怎么办？DQN(Deep Q Network)出现了，其原理就是将state&amp;action共同作为输入，所有action对应的q-value作为输出，将q-value函数的模拟，由DQN网络参数来替代。DQN的原理不再赘述，简单回顾一下数学公式：</p>
+<p>$L<em>{i}(\theta</em>{i})=E<em>{s,a,r,s’}[(y</em>{i}^{QDN}-Q(s,a;\theta_{i}))^{2}]$</p>
+<p>$y<em>{i}^{DQN}=r+\gamma max</em>{a} Q(s’,a’;\theta^{-})$</p>
+<p>在这里我们依然可以用q-learning的方法去估计 $\theta$ ，但是实际这样做表现比较差（为什么？文章没说）。</p>
+<p>后来有人提出，可以将q-target网络参数固定几轮，与此同时更新q-eval。采用这种方法，可以极大提高算法的稳定性。这种方法是属于off-policy的，因为其选择action的时候，是根据线下的greedy policy，而不是根据线上实时学到的policy。</p>
+<p>另外一个DQN很重要的方法，是experience replay。也就是说DQN网络不仅仅记住当前的state，它还会记忆之前的state，存到memory，每次更新的时候，随机从memory里选取一些state，也就是random sample一个mini-batch的states出来。experience replay通过重复利用数据，增加了数据的有效性，又因为每次随机从记忆池抽样，可以减少每次更新所用样本的方差。</p>
+<h2 id="从DQN到Double-DQN"><a href="#从DQN到Double-DQN" class="headerlink" title="从DQN到Double DQN"></a>从DQN到Double DQN</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/31/Dueling DQN/" data-id="ck2eqbsmw0000ltlvytju1ibh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/强化学习/">强化学习</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/07/15/Recsys-Spotify-2018-Challenge/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Recsys-Spotify-2018-Challenge比赛总结</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 </section>
         

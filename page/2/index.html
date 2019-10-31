@@ -65,6 +65,67 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-爬虫中遇到的登录login和form" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/21/爬虫中遇到的登录login和form/" class="article-date">
+  <time datetime="2017-06-21T15:21:57.000Z" itemprop="datePublished">2017-06-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/21/爬虫中遇到的登录login和form/">爬虫中关于登录网页，文件上传的一些笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="爬虫中遇到的登录login和form"><a href="#爬虫中遇到的登录login和form" class="headerlink" title="爬虫中遇到的登录login和form"></a>爬虫中遇到的登录login和form</h3><p>大多数web form都是由一些HTML field, submit button, 以及一个”action” page，即form真正被处理的地方，共同组成。举例说明，以下为一个最基本的web form:<a href="">http://pythonscraping.com/pages/files/form.html</a>, 可以用chrome浏览器，view-developer-source code查看html代码。</p>
+<p>通过查看代码，要注意两点：</p>
+<ul>
+<li>[ ] 两个input field的名字是firstname和last name， 这两个名字是我们一会儿要POST到server去的。</li>
+<li>[ ] 这里处理form的文件是processing.php，也是我们一会要传送的。</li>
+</ul>
+<p>怎么在爬虫中完成登录，在这里介绍python的Request library，非常简单的代码：</p>
+<p>`import requests</p>
+<p>params = {‘firstname’: ‘Ryan’, ‘lastname’: ‘Mitchell’}<br>r = requests.post(“<a href="http://pythonscraping.com/files/processing.php" target="_blank" rel="external">http://pythonscraping.com/files/processing.php</a>“, data = params)<br>print(r.text)`</p>
+<p>当然，这里的例子用的form很简单，但是当面对登录页面复杂的HTML代码时，我们也不用过于紧张，我们只需要寻找两类：</p>
+<ul>
+<li>[ ] 想要提交的数据的field的名字, 比如上面例子的firstname和lastname。</li>
+<li>[ ] 真正处理form的action page。</li>
+</ul>
+<h3 id="爬虫中遇到的Radio-Buttons-Checkboxes和其他输入"><a href="#爬虫中遇到的Radio-Buttons-Checkboxes和其他输入" class="headerlink" title="爬虫中遇到的Radio Buttons, Checkboxes和其他输入"></a>爬虫中遇到的Radio Buttons, Checkboxes和其他输入</h3><p>标准HTML文件包含了很多可能的form input fields，比如radio buttons, checkboxes, select boxes, 在 HTML5中，还有emails, dates等等，尽管登录页面代码看着很复杂，但我们要集中查找以上谈过的两类：</p>
+<ul>
+<li>[ ] 想要提交的数据的field的名字, 比如上面例子的firstname和lastname。</li>
+<li>[ ] 真正处理form的action page。</li>
+</ul>
+<p>有一种非常便捷的方法查看GET REQUESTS， 就是查看这个site的url，举例说明：假设url长这样<a href="">http: //domainname.com?thing1=foo&amp;thing2=bar</a>。</p>
+<h3 id="上传文件和图片"><a href="#上传文件和图片" class="headerlink" title="上传文件和图片"></a>上传文件和图片</h3><p>举例说明操作吧，<a href="https://www.pythonscraping.com/files/form2.html，" target="_blank" rel="external">https://www.pythonscraping.com/files/form2.html，</a> 查看其source code后，我们发现和第一个例子的source code很像，不同点在于这里的<input> type是file，代码如下：</p>
+<p>`import requests</p>
+<p>files = {‘uploadFile’: open(‘.,/files/pic.png’, ‘rb’)}<br>r =requests(“<a href="https://www.pythonscraping.com/pages/processing2.php" target="_blank" rel="external">https://www.pythonscraping.com/pages/processing2.php</a>“, files=files)<br>print(r.text)`</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/21/爬虫中遇到的登录login和form/" data-id="ck2eqbso7000nltlv4ufw5e4v" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-leetcode:lintcode刷题系－Trapping Rain Water 类问题的分析" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/06/21/leetcode:lintcode刷题系－Trapping Rain Water 类问题的分析/" class="article-date">
@@ -132,7 +193,7 @@ public int trapRainWater(int[] heights) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/21/leetcode:lintcode刷题系－Trapping Rain Water 类问题的分析/" data-id="cjjmyer94000e2slvr0x5src4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/06/21/leetcode:lintcode刷题系－Trapping Rain Water 类问题的分析/" data-id="ck2eqbsnw000gltlvax3vagus" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
@@ -171,7 +232,7 @@ public int trapRainWater(int[] heights) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/12/first-one/" data-id="cjjmyer8u00082slvqigrrrrc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/06/12/first-one/" data-id="ck2eqbsnl0009ltlvitqnp5lh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
@@ -199,7 +260,7 @@ public int trapRainWater(int[] heights) {
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推荐系统/">推荐系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/强化学习/">强化学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推荐系统/">推荐系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
     </div>
   </div>
 
@@ -209,7 +270,7 @@ public int trapRainWater(int[] heights) {
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/推荐系统/" style="font-size: 10px;">推荐系统</a> <a href="/tags/深度学习/" style="font-size: 15px;">深度学习</a> <a href="/tags/爬虫/" style="font-size: 20px;">爬虫</a>
+      <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/强化学习/" style="font-size: 10px;">强化学习</a> <a href="/tags/推荐系统/" style="font-size: 10px;">推荐系统</a> <a href="/tags/深度学习/" style="font-size: 15px;">深度学习</a> <a href="/tags/爬虫/" style="font-size: 20px;">爬虫</a>
     </div>
   </div>
 
@@ -218,7 +279,7 @@ public int trapRainWater(int[] heights) {
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
     </div>
   </div>
 
@@ -229,6 +290,10 @@ public int trapRainWater(int[] heights) {
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/10/31/Dueling DQN/">Dueling DQN论文精度</a>
+          </li>
         
           <li>
             <a href="/2018/07/15/Recsys-Spotify-2018-Challenge/">Recsys-Spotify-2018-Challenge比赛总结</a>
@@ -246,10 +311,6 @@ public int trapRainWater(int[] heights) {
             <a href="/2017/11/04/kaggle_dog_breed_idnentification/">kaggle dog breed identification基于Tensorflow迁移学习搭建图片分类器</a>
           </li>
         
-          <li>
-            <a href="/2017/06/26/一些在爬虫中用到的python tricks/">爬虫笔记4</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -262,7 +323,7 @@ public int trapRainWater(int[] heights) {
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2018 Bowen He<br>
+      &copy; 2019 Bowen He<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
