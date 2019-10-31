@@ -69,6 +69,46 @@
     <div class="outer">
       <section id="main">
   
+    <article id="post-Dueling DQN" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/31/Dueling DQN/" class="article-date">
+  <time datetime="2019-10-31T13:45:48.106Z" itemprop="datePublished">2019-10-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Dueling-Network-Architecture-for-Deep-Reinforcement-Learning-论文精读"><a href="#Dueling-Network-Architecture-for-Deep-Reinforcement-Learning-论文精读" class="headerlink" title="Dueling Network Architecture for Deep Reinforcement Learning 论文精读"></a>Dueling Network Architecture for Deep Reinforcement Learning 论文精读</h1><p>导读</p>
+<p>本文主要对论文Dueling DQN <a href="https://arxiv.org/pdf/1511.06581.pdf" target="_blank" rel="external">https://arxiv.org/pdf/1511.06581.pdf</a> 提出的背景知识，解决的问题，带来的优势及其原因进行一些解读和分享。</p>
+<h2 id="从Q-Learning到DQN"><a href="#从Q-Learning到DQN" class="headerlink" title="从Q-Learning到DQN"></a>从Q-Learning到DQN</h2><p>强化学习入门先学习了Q-Learning，因为states可能有千千万万，对应states*action个q-value值，随着states的增加，会有内存不够的问题。怎么办？DQN(Deep Q Network)出现了，其原理就是将state&amp;action共同作为输入，所有action对应的q-value作为输出，将q-value函数的模拟，由DQN网络参数来替代。DQN的原理不再赘述，简单回顾一下数学公式：</p>
+<p>$L<em>{i}(\theta</em>{i})=E<em>{s,a,r,s’}[(y</em>{i}^{QDN}-Q(s,a;\theta_{i}))^{2}]$</p>
+<p>$y<em>{i}^{DQN}=r+\gamma max</em>{a} Q(s’,a’;\theta^{-})$</p>
+<p>在这里我们依然可以用q-learning的方法去估计 $\theta$ ，但是实际这样做表现比较差（为什么？文章没说）。</p>
+<p>后来有人提出，可以将q-target网络参数固定几轮，与此同时更新q-eval。采用这种方法，可以极大提高算法的稳定性。这种方法是属于off-policy的，因为其选择action的时候，是根据线下的greedy policy，而不是根据线上实时学到的policy。</p>
+<p>另外一个DQN很重要的方法，是experience replay。也就是说DQN网络不仅仅记住当前的state，它还会记忆之前的state，存到memory，每次更新的时候，随机从memory里选取一些state，也就是random sample一个mini-batch的states出来。experience replay通过重复利用数据，增加了数据的有效性，又因为每次随机从记忆池抽样，可以减少每次更新所用样本的方差。</p>
+<h2 id="从DQN到Double-DQN"><a href="#从DQN到Double-DQN" class="headerlink" title="从DQN到Double DQN"></a>从DQN到Double DQN</h2>
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://yoursite.com/2019/10/31/Dueling DQN/" data-id="ck2ericqd0001qllvivcacjyz" class="article-share-link" data-share="baidu" data-title="">Share</a>
+      
+
+      
+        <a href="http://yoursite.com/2019/10/31/Dueling DQN/#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-policy_gradient" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/10/31/policy_gradient/" class="article-date">
@@ -88,7 +128,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2019/10/31/policy_gradient/" data-id="ck2erek7w000jp7lvbfrg5px0" class="article-share-link" data-share="baidu" data-title="">Share</a>
+        <a data-url="http://yoursite.com/2019/10/31/policy_gradient/" data-id="ck2ericrs000lqllvko6y7me6" class="article-share-link" data-share="baidu" data-title="">Share</a>
       
 
       
@@ -96,58 +136,6 @@
       
 
       
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Dueling DQN" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/10/31/Dueling DQN/" class="article-date">
-  <time datetime="2019-10-31T13:10:00.000Z" itemprop="datePublished">2019-10-31</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/31/Dueling DQN/">Dueling DQN论文精度</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Dueling-Network-Architecture-for-Deep-Reinforcement-Learning-论文精读"><a href="#Dueling-Network-Architecture-for-Deep-Reinforcement-Learning-论文精读" class="headerlink" title="Dueling Network Architecture for Deep Reinforcement Learning 论文精读"></a>Dueling Network Architecture for Deep Reinforcement Learning 论文精读</h1><p>导读</p>
-<p>本文主要对论文Dueling DQN <a href="https://arxiv.org/pdf/1511.06581.pdf" target="_blank" rel="external">https://arxiv.org/pdf/1511.06581.pdf</a> 提出的背景知识，解决的问题，带来的优势及其原因进行一些解读和分享。</p>
-<h2 id="从Q-Learning到DQN"><a href="#从Q-Learning到DQN" class="headerlink" title="从Q-Learning到DQN"></a>从Q-Learning到DQN</h2><p>强化学习入门先学习了Q-Learning，因为states可能有千千万万，对应states*action个q-value值，随着states的增加，会有内存不够的问题。怎么办？DQN(Deep Q Network)出现了，其原理就是将state&amp;action共同作为输入，所有action对应的q-value作为输出，将q-value函数的模拟，由DQN网络参数来替代。DQN的原理不再赘述，简单回顾一下数学公式：</p>
-<p>$L<em>{i}(\theta</em>{i})=E<em>{s,a,r,s’}[(y</em>{i}^{QDN}-Q(s,a;\theta_{i}))^{2}]$</p>
-<p>$y<em>{i}^{DQN}=r+\gamma max</em>{a} Q(s’,a’;\theta^{-})$</p>
-<p>在这里我们依然可以用q-learning的方法去估计 $\theta$ ，但是实际这样做表现比较差（为什么？文章没说）。</p>
-<p>后来有人提出，可以将q-target网络参数固定几轮，与此同时更新q-eval。采用这种方法，可以极大提高算法的稳定性。这种方法是属于off-policy的，因为其选择action的时候，是根据线下的greedy policy，而不是根据线上实时学到的policy。</p>
-<p>另外一个DQN很重要的方法，是experience replay。也就是说DQN网络不仅仅记住当前的state，它还会记忆之前的state，存到memory，每次更新的时候，随机从memory里选取一些state，也就是random sample一个mini-batch的states出来。experience replay通过重复利用数据，增加了数据的有效性，又因为每次随机从记忆池抽样，可以减少每次更新所用样本的方差。</p>
-<h2 id="从DQN到Double-DQN"><a href="#从DQN到Double-DQN" class="headerlink" title="从DQN到Double DQN"></a>从DQN到Double DQN</h2>
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://yoursite.com/2019/10/31/Dueling DQN/" data-id="ck2erek6y0001p7lvago9ruyu" class="article-share-link" data-share="baidu" data-title="Dueling DQN论文精度">Share</a>
-      
-
-      
-        <a href="http://yoursite.com/2019/10/31/Dueling DQN/#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/强化学习/">强化学习</a></li></ul>
-
     </footer>
   </div>
   
@@ -258,7 +246,7 @@ mat = mat.tocsr().sorted_indices()
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2018/07/15/Recsys-Spotify-2018-Challenge/" data-id="ck2erek740003p7lvvqn0ngy7" class="article-share-link" data-share="baidu" data-title="Recsys-Spotify-2018-Challenge比赛总结">Share</a>
+        <a data-url="http://yoursite.com/2018/07/15/Recsys-Spotify-2018-Challenge/" data-id="ck2ericqn0004qllvqqkt32ow" class="article-share-link" data-share="baidu" data-title="Recsys-Spotify-2018-Challenge比赛总结">Share</a>
       
 
       
@@ -329,7 +317,7 @@ mat = mat.tocsr().sorted_indices()
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2017/11/13/Word2Vec/" data-id="ck2erek750004p7lv9dq91zke" class="article-share-link" data-share="baidu" data-title="Word2Vec模型">Share</a>
+        <a data-url="http://yoursite.com/2017/11/13/Word2Vec/" data-id="ck2ericqw0008qllvew9w1rna" class="article-share-link" data-share="baidu" data-title="Word2Vec模型">Share</a>
       
 
       
@@ -380,7 +368,7 @@ mat = mat.tocsr().sorted_indices()
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2017/11/09/python_script_function/" data-id="ck2erek80000mp7lvwtyg9p1t" class="article-share-link" data-share="baidu" data-title="一些python function总结">Share</a>
+        <a data-url="http://yoursite.com/2017/11/09/python_script_function/" data-id="ck2ericrn000iqllvbainfr1x" class="article-share-link" data-share="baidu" data-title="一些python function总结">Share</a>
       
 
       
@@ -479,7 +467,7 @@ mat = mat.tocsr().sorted_indices()
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2017/11/04/kaggle_dog_breed_idnentification/" data-id="ck2erek7f000ap7lv5v0d6bvv" class="article-share-link" data-share="baidu" data-title="kaggle dog breed identification基于Tensorflow迁移学习搭建图片分类器">Share</a>
+        <a data-url="http://yoursite.com/2017/11/04/kaggle_dog_breed_idnentification/" data-id="ck2ericrb000dqllvw2fm7tyk" class="article-share-link" data-share="baidu" data-title="kaggle dog breed identification基于Tensorflow迁移学习搭建图片分类器">Share</a>
       
 
       
@@ -556,7 +544,7 @@ mat = mat.tocsr().sorted_indices()
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2017/06/26/一些在爬虫中用到的python tricks/" data-id="ck2erek84000op7lv8tpm4lqp" class="article-share-link" data-share="baidu" data-title="爬虫笔记4">Share</a>
+        <a data-url="http://yoursite.com/2017/06/26/一些在爬虫中用到的python tricks/" data-id="ck2ericrw000nqllvojfzrhe2" class="article-share-link" data-share="baidu" data-title="爬虫笔记4">Share</a>
       
 
       
@@ -619,7 +607,7 @@ mat = mat.tocsr().sorted_indices()
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2017/06/25/Avoid Scraper Trapper/" data-id="ck2erek7t000hp7lvb80f4od1" class="article-share-link" data-share="baidu" data-title="爬虫笔记3">Share</a>
+        <a data-url="http://yoursite.com/2017/06/25/Avoid Scraper Trapper/" data-id="ck2ericq70000qllvq3o6bmq8" class="article-share-link" data-share="baidu" data-title="爬虫笔记3">Share</a>
       
 
       
@@ -675,7 +663,7 @@ mat = mat.tocsr().sorted_indices()
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2017/06/24/handling redirects/" data-id="ck2erek7l000dp7lv6pc0ss0o" class="article-share-link" data-share="baidu" data-title="爬虫笔记2">Share</a>
+        <a data-url="http://yoursite.com/2017/06/24/handling redirects/" data-id="ck2ericr8000bqllvjpvwk1xq" class="article-share-link" data-share="baidu" data-title="爬虫笔记2">Share</a>
       
 
       
@@ -769,7 +757,7 @@ String popStack(Stack&lt;Object&gt; stack){
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2017/06/22/Expression Expand/" data-id="ck2erek6s0000p7lvz75uhm2g" class="article-share-link" data-share="baidu" data-title="leetcode/lintcode刷题系－Expression Expand">Share</a>
+        <a data-url="http://yoursite.com/2017/06/22/Expression Expand/" data-id="ck2ericqk0003qllvq2gbv6sc" class="article-share-link" data-share="baidu" data-title="leetcode/lintcode刷题系－Expression Expand">Share</a>
       
 
       
@@ -801,7 +789,7 @@ String popStack(Stack&lt;Object&gt; stack){
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/强化学习/">强化学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推荐系统/">推荐系统</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a><span class="tag-list-count">4</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推荐系统/">推荐系统</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a><span class="tag-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -810,7 +798,7 @@ String popStack(Stack&lt;Object&gt; stack){
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/强化学习/" style="font-size: 10px;">强化学习</a> <a href="/tags/推荐系统/" style="font-size: 10px;">推荐系统</a> <a href="/tags/深度学习/" style="font-size: 15px;">深度学习</a> <a href="/tags/爬虫/" style="font-size: 20px;">爬虫</a>
+      <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/推荐系统/" style="font-size: 10px;">推荐系统</a> <a href="/tags/深度学习/" style="font-size: 15px;">深度学习</a> <a href="/tags/爬虫/" style="font-size: 20px;">爬虫</a>
     </div>
   </div>
 
@@ -831,11 +819,11 @@ String popStack(Stack&lt;Object&gt; stack){
       <ul>
         
           <li>
-            <a href="/2019/10/31/policy_gradient/">(no title)</a>
+            <a href="/2019/10/31/Dueling DQN/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2019/10/31/Dueling DQN/">Dueling DQN论文精度</a>
+            <a href="/2019/10/31/policy_gradient/">(no title)</a>
           </li>
         
           <li>
