@@ -6,16 +6,16 @@
   
   <title>Bowen He&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Dueling Network Architecture for Deep Reinforcement Learning 论文精读导读 本文主要对论文Dueling DQN https://arxiv.org/pdf/1511.06581.pdf 提出的背景知识，解决的问题，带来的优势及其原因进行一些解读和分享。 从Q-Learning到DQN强化学习入门先学习了Q-Learning，因为stat">
+  <meta name="description" content="mathias:true Dueling Network Architecture for Deep Reinforcement Learning 论文精读导读 本文主要对论文Dueling DQN https://arxiv.org/pdf/1511.06581.pdf 提出的背景知识，解决的问题，带来的优势及其原因进行一些解读和分享。 从Q-Learning到DQN强化学习入门先学习了Q-Le">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bowen He&#39;s Blog">
 <meta property="og:url" content="http://yoursite.com/2019/10/31/Dueling DQN/index.html">
 <meta property="og:site_name" content="Bowen He&#39;s Blog">
-<meta property="og:description" content="Dueling Network Architecture for Deep Reinforcement Learning 论文精读导读 本文主要对论文Dueling DQN https://arxiv.org/pdf/1511.06581.pdf 提出的背景知识，解决的问题，带来的优势及其原因进行一些解读和分享。 从Q-Learning到DQN强化学习入门先学习了Q-Learning，因为stat">
-<meta property="og:updated_time" content="2019-10-31T13:45:48.107Z">
+<meta property="og:description" content="mathias:true Dueling Network Architecture for Deep Reinforcement Learning 论文精读导读 本文主要对论文Dueling DQN https://arxiv.org/pdf/1511.06581.pdf 提出的背景知识，解决的问题，带来的优势及其原因进行一些解读和分享。 从Q-Learning到DQN强化学习入门先学习了Q-Le">
+<meta property="og:updated_time" content="2019-10-31T14:00:45.113Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bowen He&#39;s Blog">
-<meta name="twitter:description" content="Dueling Network Architecture for Deep Reinforcement Learning 论文精读导读 本文主要对论文Dueling DQN https://arxiv.org/pdf/1511.06581.pdf 提出的背景知识，解决的问题，带来的优势及其原因进行一些解读和分享。 从Q-Learning到DQN强化学习入门先学习了Q-Learning，因为stat">
+<meta name="twitter:description" content="mathias:true Dueling Network Architecture for Deep Reinforcement Learning 论文精读导读 本文主要对论文Dueling DQN https://arxiv.org/pdf/1511.06581.pdf 提出的背景知识，解决的问题，带来的优势及其原因进行一些解读和分享。 从Q-Learning到DQN强化学习入门先学习了Q-Le">
   
     <link rel="alternative" href="/atom.xml" title="Bowen He&#39;s Blog" type="application/atom+xml">
   
@@ -83,7 +83,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Dueling-Network-Architecture-for-Deep-Reinforcement-Learning-论文精读"><a href="#Dueling-Network-Architecture-for-Deep-Reinforcement-Learning-论文精读" class="headerlink" title="Dueling Network Architecture for Deep Reinforcement Learning 论文精读"></a>Dueling Network Architecture for Deep Reinforcement Learning 论文精读</h1><p>导读</p>
+        <p>mathias:true</p>
+<h1 id="Dueling-Network-Architecture-for-Deep-Reinforcement-Learning-论文精读"><a href="#Dueling-Network-Architecture-for-Deep-Reinforcement-Learning-论文精读" class="headerlink" title="Dueling Network Architecture for Deep Reinforcement Learning 论文精读"></a>Dueling Network Architecture for Deep Reinforcement Learning 论文精读</h1><p>导读</p>
 <p>本文主要对论文Dueling DQN <a href="https://arxiv.org/pdf/1511.06581.pdf" target="_blank" rel="external">https://arxiv.org/pdf/1511.06581.pdf</a> 提出的背景知识，解决的问题，带来的优势及其原因进行一些解读和分享。</p>
 <h2 id="从Q-Learning到DQN"><a href="#从Q-Learning到DQN" class="headerlink" title="从Q-Learning到DQN"></a>从Q-Learning到DQN</h2><p>强化学习入门先学习了Q-Learning，因为states可能有千千万万，对应states*action个q-value值，随着states的增加，会有内存不够的问题。怎么办？DQN(Deep Q Network)出现了，其原理就是将state&amp;action共同作为输入，所有action对应的q-value作为输出，将q-value函数的模拟，由DQN网络参数来替代。DQN的原理不再赘述，简单回顾一下数学公式：</p>
 <p>$L<em>{i}(\theta</em>{i})=E<em>{s,a,r,s’}[(y</em>{i}^{QDN}-Q(s,a;\theta_{i}))^{2}]$</p>
@@ -96,7 +97,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2019/10/31/Dueling DQN/" data-id="ck2ericqd0001qllvivcacjyz" class="article-share-link" data-share="baidu" data-title="">Share</a>
+        <a data-url="http://yoursite.com/2019/10/31/Dueling DQN/" data-id="ck2es1fad0001snlv55gvdplr" class="article-share-link" data-share="baidu" data-title="">Share</a>
       
 
       
