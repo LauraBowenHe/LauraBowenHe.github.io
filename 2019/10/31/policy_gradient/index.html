@@ -6,16 +6,16 @@
   
   <title>Bowen He&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Policy Gradient关键点分析导读：强化学习入门，先依次学习了q-learning，DQN，Dueling DQN； ​           近日在知乎浏览，发现openai更偏爱policy gradient，知乎大佬讲解说，是因为policy gradient相比dqn所需数据更少。使用较少训练数据而得到较好的结果，恰恰能减少线上成本，因此希望能理清楚为什么policy gradie">
+  <meta name="description" content="tags: 强化学习 Policy Gradient关键点分析导读：强化学习入门，先依次学习了q-learning，DQN，Dueling DQN； ​           近日在知乎浏览，发现openai更偏爱policy gradient，知乎大佬讲解说，是因为policy gradient相比dqn所需数据更少。使用较少训练数据而得到较好的结果，恰恰能减少线上成本，因此希望能理清楚为什么po">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bowen He&#39;s Blog">
 <meta property="og:url" content="http://yoursite.com/2019/10/31/policy_gradient/index.html">
 <meta property="og:site_name" content="Bowen He&#39;s Blog">
-<meta property="og:description" content="Policy Gradient关键点分析导读：强化学习入门，先依次学习了q-learning，DQN，Dueling DQN； ​           近日在知乎浏览，发现openai更偏爱policy gradient，知乎大佬讲解说，是因为policy gradient相比dqn所需数据更少。使用较少训练数据而得到较好的结果，恰恰能减少线上成本，因此希望能理清楚为什么policy gradie">
-<meta property="og:updated_time" content="2019-10-31T13:37:29.263Z">
+<meta property="og:description" content="tags: 强化学习 Policy Gradient关键点分析导读：强化学习入门，先依次学习了q-learning，DQN，Dueling DQN； ​           近日在知乎浏览，发现openai更偏爱policy gradient，知乎大佬讲解说，是因为policy gradient相比dqn所需数据更少。使用较少训练数据而得到较好的结果，恰恰能减少线上成本，因此希望能理清楚为什么po">
+<meta property="og:updated_time" content="2019-10-31T14:09:38.367Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bowen He&#39;s Blog">
-<meta name="twitter:description" content="Policy Gradient关键点分析导读：强化学习入门，先依次学习了q-learning，DQN，Dueling DQN； ​           近日在知乎浏览，发现openai更偏爱policy gradient，知乎大佬讲解说，是因为policy gradient相比dqn所需数据更少。使用较少训练数据而得到较好的结果，恰恰能减少线上成本，因此希望能理清楚为什么policy gradie">
+<meta name="twitter:description" content="tags: 强化学习 Policy Gradient关键点分析导读：强化学习入门，先依次学习了q-learning，DQN，Dueling DQN； ​           近日在知乎浏览，发现openai更偏爱policy gradient，知乎大佬讲解说，是因为policy gradient相比dqn所需数据更少。使用较少训练数据而得到较好的结果，恰恰能减少线上成本，因此希望能理清楚为什么po">
   
     <link rel="alternative" href="/atom.xml" title="Bowen He&#39;s Blog" type="application/atom+xml">
   
@@ -83,14 +83,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Policy-Gradient关键点分析"><a href="#Policy-Gradient关键点分析" class="headerlink" title="Policy Gradient关键点分析"></a>Policy Gradient关键点分析</h1><p>导读：强化学习入门，先依次学习了q-learning，DQN，Dueling DQN；</p>
+        <p>tags: 强化学习</p>
+<h1 id="Policy-Gradient关键点分析"><a href="#Policy-Gradient关键点分析" class="headerlink" title="Policy Gradient关键点分析"></a>Policy Gradient关键点分析</h1><p>导读：强化学习入门，先依次学习了q-learning，DQN，Dueling DQN；</p>
 <p>​           近日在知乎浏览，发现openai更偏爱policy gradient，知乎大佬讲解说，是因为policy gradient相比dqn所需数据更少。使用较少训练数据而得到较好的结果，恰恰能减少线上成本，因此希望能理清楚为什么policy gradient能使用更少的训练数据？其与dqn的区别在哪里。</p>
+<p> 与DQN的区别</p>
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2019/10/31/policy_gradient/" data-id="ck2es1fbb000isnlvkvixntuo" class="article-share-link" data-share="baidu" data-title="">Share</a>
+        <a data-url="http://yoursite.com/2019/10/31/policy_gradient/" data-id="ck2esdrme000ktmlvr664m9cu" class="article-share-link" data-share="baidu" data-title="">Share</a>
       
 
       
