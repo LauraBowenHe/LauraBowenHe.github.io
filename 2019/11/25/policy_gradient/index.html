@@ -4,14 +4,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2017/6 | Bowen He&#39;s Blog</title>
+  <title>Policy Gradient | Bowen He&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Bowen He&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2017/06/index.html">
+  <meta name="description" content="Policy Gradient关键点分析导读：强化学习入门，先依次学习了q-learning，DQN，Dueling DQN； ​           近日在知乎浏览，发现openai更偏爱policy gradient，知乎大佬讲解说，是因为policy gradient相比dqn所需数据更少。使用较少训练数据而得到较好的结果，恰恰能减少线上成本，因此希望能理清楚为什么policy gradie">
+<meta name="keywords" content="强化学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Policy Gradient">
+<meta property="og:url" content="http://yoursite.com/2019/11/25/policy_gradient/index.html">
 <meta property="og:site_name" content="Bowen He&#39;s Blog">
+<meta property="og:description" content="Policy Gradient关键点分析导读：强化学习入门，先依次学习了q-learning，DQN，Dueling DQN； ​           近日在知乎浏览，发现openai更偏爱policy gradient，知乎大佬讲解说，是因为policy gradient相比dqn所需数据更少。使用较少训练数据而得到较好的结果，恰恰能减少线上成本，因此希望能理清楚为什么policy gradie">
+<meta property="og:updated_time" content="2019-11-26T14:31:17.065Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Bowen He&#39;s Blog">
+<meta name="twitter:title" content="Policy Gradient">
+<meta name="twitter:description" content="Policy Gradient关键点分析导读：强化学习入门，先依次学习了q-learning，DQN，Dueling DQN； ​           近日在知乎浏览，发现openai更偏爱policy gradient，知乎大佬讲解说，是因为policy gradient相比dqn所需数据更少。使用较少训练数据而得到较好的结果，恰恰能减少线上成本，因此希望能理清楚为什么policy gradie">
   
     <link rel="alternative" href="/atom.xml" title="Bowen He&#39;s Blog" type="application/atom+xml">
   
@@ -67,173 +72,67 @@
   </div>
 </header>
     <div class="outer">
-      <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/26/一些在爬虫中用到的python tricks/" class="archive-article-date">
-  <time datetime="2017-06-26T08:50:00.000Z" itemprop="datePublished">Jun 26</time>
+      <section id="main"><article id="post-policy_gradient" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/25/policy_gradient/" class="article-date">
+  <time datetime="2019-11-25T14:50:00.000Z" itemprop="datePublished">2019-11-25</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/26/一些在爬虫中用到的python tricks/">爬虫笔记4</a>
+    <h1 class="article-title" itemprop="name">
+      Policy Gradient
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/25/Avoid Scraper Trapper/" class="archive-article-date">
-  <time datetime="2017-06-25T08:45:57.000Z" itemprop="datePublished">Jun 25</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/25/Avoid Scraper Trapper/">爬虫笔记3</a>
-    </h1>
-  
+        <h1 id="Policy-Gradient关键点分析"><a href="#Policy-Gradient关键点分析" class="headerlink" title="Policy Gradient关键点分析"></a>Policy Gradient关键点分析</h1><p>导读：强化学习入门，先依次学习了q-learning，DQN，Dueling DQN；</p>
+<p>​           近日在知乎浏览，发现openai更偏爱policy gradient，知乎大佬讲解说，是因为policy gradient相比dqn所需数据更少。使用较少训练数据而得到较好的结果，恰恰能减少线上成本，因此希望能理清楚为什么policy gradient能使用更少的训练数据？其与dqn的区别在哪里。</p>
+<h2 id="与DQN的区别"><a href="#与DQN的区别" class="headerlink" title="与DQN的区别"></a>与DQN的区别</h2><p>我们知道，在DQN中，我们将state经过nn网络产生Q值，根据Q值大小来选取action，而policy gradient则是将state经过nn网络直接产生采取每个action的概率，直接选取action。可是该如何判断</p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/24/handling redirects/" class="archive-article-date">
-  <time datetime="2017-06-24T08:40:55.000Z" itemprop="datePublished">Jun 24</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/24/handling redirects/">爬虫笔记2</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/22/Expression Expand/" class="archive-article-date">
-  <time datetime="2017-06-22T12:18:00.000Z" itemprop="datePublished">Jun 22</time>
-</a>
+    </div>
+    <footer class="article-footer">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/22/Expression Expand/">leetcode/lintcode刷题系－Expression Expand</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/22/Sliding Window Median/" class="archive-article-date">
-  <time datetime="2017-06-22T07:51:00.000Z" itemprop="datePublished">Jun 22</time>
-</a>
+        <a data-url="http://yoursite.com/2019/11/25/policy_gradient/" data-id="ck3fyma77000dtalvszu5k2qf" class="article-share-link" data-share="baidu" data-title="Policy Gradient">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/22/Sliding Window Median/">leetcode/lintcode刷题系－Sliding Window Median</a>
-    </h1>
-  
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/21/爬虫中遇到的登录login和form/" class="archive-article-date">
-  <time datetime="2017-06-21T15:21:57.000Z" itemprop="datePublished">Jun 21</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/21/爬虫中遇到的登录login和form/">爬虫中关于登录网页，文件上传的一些笔记</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/21/leetcode:lintcode刷题系－Trapping Rain Water 类问题的分析/" class="archive-article-date">
-  <time datetime="2017-06-21T06:20:00.000Z" itemprop="datePublished">Jun 21</time>
-</a>
+        <a href="http://yoursite.com/2019/11/25/policy_gradient/#ds-thread" class="article-comment-link">Comments</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/21/leetcode:lintcode刷题系－Trapping Rain Water 类问题的分析/">leetcode/lintcode刷题系－Trapping Rain Water 类问题的分析</a>
-    </h1>
-  
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/12/first-one/" class="archive-article-date">
-  <time datetime="2017-06-12T07:52:57.000Z" itemprop="datePublished">Jun 12</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/12/first-one/">Hello!</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/强化学习/">强化学习</a></li></ul>
 
-    </header>
+    </footer>
   </div>
-</article>
+  
+    
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/11/05/Dueling DQN/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Dueling Network Architecture for Deep Reinforcement Learning 论文精读</div>
+    </a>
   
+</nav>
 
+  
+</article>
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2019/11/25/policy_gradient/" data-title="Policy Gradient" data-url="http://yoursite.com/2019/11/25/policy_gradient/"></div>
+  </section>
 </section>
       
       <aside id="sidebar">
