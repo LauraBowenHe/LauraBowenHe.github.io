@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,19 +12,23 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bowen He&#39;s Blog">
   
-    <link rel="alternative" href="/atom.xml" title="Bowen He&#39;s Blog" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Bowen He&#39;s Blog" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css">
-  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
   
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
 </head>
+
 <body>
-<div id="container">
-  <div id="wrap">
-    <header id="header">
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
   <div id="banner"></div>
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
@@ -54,20 +57,13 @@
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
-          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
-          <input type="submit" value="" class="search-form-submit">
-          <input name=tn type=hidden value="bds">
-          <input name=cl type=hidden value="3">
-          <input name=ct type=hidden value="2097152">
-          <input type="hidden" name="si" value="yoursite.com">
-        </form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
       </div>
     </div>
   </div>
 </header>
-    <div class="outer">
-      <section id="main">
+      <div class="outer">
+        <section id="main">
   
     <article id="post-policy_gradient" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -83,7 +79,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/25/policy_gradient/">Policy Gradient</a>
+      <a class="article-title" href="/2019/11/25/policy_gradient/">Policy Gradient关键点分析</a>
     </h1>
   
 
@@ -91,21 +87,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Policy-Gradient关键点分析"><a href="#Policy-Gradient关键点分析" class="headerlink" title="Policy Gradient关键点分析"></a>Policy Gradient关键点分析</h1><p>导读：强化学习入门，先依次学习了q-learning，DQN，Dueling DQN；</p>
+        <p>导读：强化学习入门，先依次学习了q-learning，DQN，Dueling DQN；</p>
 <p>​           近日在知乎浏览，发现openai更偏爱policy gradient，知乎大佬讲解说，是因为policy gradient相比dqn所需数据更少。使用较少训练数据而得到较好的结果，恰恰能减少线上成本，因此希望能理清楚为什么policy gradient能使用更少的训练数据？其与dqn的区别在哪里。</p>
 <h2 id="与DQN的区别"><a href="#与DQN的区别" class="headerlink" title="与DQN的区别"></a>与DQN的区别</h2><p>我们知道，在DQN中，我们将state经过nn网络产生Q值，根据Q值大小来选取action，而policy gradient则是将state经过nn网络直接产生采取每个action的概率，直接选取action。可是该如何判断</p>
 
       
     </div>
     <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/25/policy_gradient/" data-id="ck3fyr2ej000juclvebhax9i7" class="article-share-link">Share</a>
       
-        <a data-url="http://yoursite.com/2019/11/25/policy_gradient/" data-id="ck3fyma77000dtalvszu5k2qf" class="article-share-link" data-share="baidu" data-title="Policy Gradient">Share</a>
-      
-
-      
-        <a href="http://yoursite.com/2019/11/25/policy_gradient/#ds-thread" class="article-comment-link">Comments</a>
-      
-
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/强化学习/">强化学习</a></li></ul>
 
@@ -150,14 +140,8 @@
       
     </div>
     <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/05/Dueling DQN/" data-id="ck3fyr2e10005uclvs1h9xvyn" class="article-share-link">Share</a>
       
-        <a data-url="http://yoursite.com/2019/11/05/Dueling DQN/" data-id="ck3fyma6c0000talv6m2vknxv" class="article-share-link" data-share="baidu" data-title="Dueling Network Architecture for Deep Reinforcement Learning 论文精读">Share</a>
-      
-
-      
-        <a href="http://yoursite.com/2019/11/05/Dueling DQN/#ds-thread" class="article-comment-link">Comments</a>
-      
-
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/强化学习/">强化学习</a></li></ul>
 
@@ -270,14 +254,8 @@ mat = mat.tocsr().sorted_indices()
       
     </div>
     <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/07/15/Recsys-Spotify-2018-Challenge/" data-id="ck3fyr2dy0004uclvjdi3c9yy" class="article-share-link">Share</a>
       
-        <a data-url="http://yoursite.com/2018/07/15/Recsys-Spotify-2018-Challenge/" data-id="ck3fyma6q0004talvx9nh86gp" class="article-share-link" data-share="baidu" data-title="Recsys-Spotify-2018-Challenge比赛总结">Share</a>
-      
-
-      
-        <a href="http://yoursite.com/2018/07/15/Recsys-Spotify-2018-Challenge/#ds-thread" class="article-comment-link">Comments</a>
-      
-
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/推荐系统/">推荐系统</a></li></ul>
 
@@ -341,14 +319,8 @@ mat = mat.tocsr().sorted_indices()
       
     </div>
     <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/11/13/Word2Vec/" data-id="ck3fyr2e70009uclvmjeqlb2g" class="article-share-link">Share</a>
       
-        <a data-url="http://yoursite.com/2017/11/13/Word2Vec/" data-id="ck3fyma6s0005talvgqg55hwq" class="article-share-link" data-share="baidu" data-title="Word2Vec模型">Share</a>
-      
-
-      
-        <a href="http://yoursite.com/2017/11/13/Word2Vec/#ds-thread" class="article-comment-link">Comments</a>
-      
-
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
 
@@ -392,14 +364,8 @@ mat = mat.tocsr().sorted_indices()
       
     </div>
     <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/11/09/python_script_function/" data-id="ck3fyr2eo000muclvz8ffljxu" class="article-share-link">Share</a>
       
-        <a data-url="http://yoursite.com/2017/11/09/python_script_function/" data-id="ck3fyma7k000ltalvcroon0w0" class="article-share-link" data-share="baidu" data-title="一些python function总结">Share</a>
-      
-
-      
-        <a href="http://yoursite.com/2017/11/09/python_script_function/#ds-thread" class="article-comment-link">Comments</a>
-      
-
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
 
@@ -491,14 +457,8 @@ mat = mat.tocsr().sorted_indices()
       
     </div>
     <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/11/04/kaggle_dog_breed_idnentification/" data-id="ck3fyr2ef000euclvihbkrpx6" class="article-share-link">Share</a>
       
-        <a data-url="http://yoursite.com/2017/11/04/kaggle_dog_breed_idnentification/" data-id="ck3fyma6x0008talv2cynezxu" class="article-share-link" data-share="baidu" data-title="kaggle dog breed identification基于Tensorflow迁移学习搭建图片分类器">Share</a>
-      
-
-      
-        <a href="http://yoursite.com/2017/11/04/kaggle_dog_breed_idnentification/#ds-thread" class="article-comment-link">Comments</a>
-      
-
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
 
@@ -568,14 +528,8 @@ mat = mat.tocsr().sorted_indices()
       
     </div>
     <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/26/一些在爬虫中用到的python tricks/" data-id="ck3fyr2eq000ouclvditwgza1" class="article-share-link">Share</a>
       
-        <a data-url="http://yoursite.com/2017/06/26/一些在爬虫中用到的python tricks/" data-id="ck3fyma7n000ntalvdvva3ez6" class="article-share-link" data-share="baidu" data-title="爬虫笔记4">Share</a>
-      
-
-      
-        <a href="http://yoursite.com/2017/06/26/一些在爬虫中用到的python tricks/#ds-thread" class="article-comment-link">Comments</a>
-      
-
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
 
@@ -631,14 +585,8 @@ mat = mat.tocsr().sorted_indices()
       
     </div>
     <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/25/Avoid Scraper Trapper/" data-id="ck3fyr2dm0000uclvz0llo1r0" class="article-share-link">Share</a>
       
-        <a data-url="http://yoursite.com/2017/06/25/Avoid Scraper Trapper/" data-id="ck3fyma6o0003talve8xlfr6o" class="article-share-link" data-share="baidu" data-title="爬虫笔记3">Share</a>
-      
-
-      
-        <a href="http://yoursite.com/2017/06/25/Avoid Scraper Trapper/#ds-thread" class="article-comment-link">Comments</a>
-      
-
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
 
@@ -687,14 +635,8 @@ mat = mat.tocsr().sorted_indices()
       
     </div>
     <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/24/handling redirects/" data-id="ck3fyr2ec000cuclv7e0hijxx" class="article-share-link">Share</a>
       
-        <a data-url="http://yoursite.com/2017/06/24/handling redirects/" data-id="ck3fyma7a000gtalvnfqzawzs" class="article-share-link" data-share="baidu" data-title="爬虫笔记2">Share</a>
-      
-
-      
-        <a href="http://yoursite.com/2017/06/24/handling redirects/#ds-thread" class="article-comment-link">Comments</a>
-      
-
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
 
@@ -781,14 +723,8 @@ String popStack(Stack&lt;Object&gt; stack){
       
     </div>
     <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/22/Expression Expand/" data-id="ck3fyr2dr0001uclvqfjy0ndl" class="article-share-link">Share</a>
       
-        <a data-url="http://yoursite.com/2017/06/22/Expression Expand/" data-id="ck3fyma6i0001talvna7t4v9u" class="article-share-link" data-share="baidu" data-title="leetcode/lintcode刷题系－Expression Expand">Share</a>
-      
-
-      
-        <a href="http://yoursite.com/2017/06/22/Expression Expand/#ds-thread" class="article-comment-link">Comments</a>
-      
-
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
 
@@ -802,21 +738,23 @@ String popStack(Stack&lt;Object&gt; stack){
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
   </nav>
 </section>
-      
-      <aside id="sidebar">
+        
+          <aside id="sidebar">
   
     
+
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/强化学习/">强化学习</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推荐系统/">推荐系统</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a><span class="tag-list-count">4</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/强化学习/">强化学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推荐系统/">推荐系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
     </div>
   </div>
+
 
   
     
@@ -832,9 +770,10 @@ String popStack(Stack&lt;Object&gt; stack){
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">8</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
     </div>
   </div>
+
 
   
     
@@ -844,7 +783,7 @@ String popStack(Stack&lt;Object&gt; stack){
       <ul>
         
           <li>
-            <a href="/2019/11/25/policy_gradient/">Policy Gradient</a>
+            <a href="/2019/11/25/policy_gradient/">Policy Gradient关键点分析</a>
           </li>
         
           <li>
@@ -868,146 +807,37 @@ String popStack(Stack&lt;Object&gt; stack){
   </div>
 
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Links</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="http://arvinxiang.com" target="_blank">主题作者</a>
-          </li>
-        
-          <li>
-            <a href="http://reqianduan.com" target="_blank">热前端</a>
-          </li>
-        
-          <li>
-            <a href="http://yuancheng.work" target="_blank">远程.work</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
 </aside>
-      
-    </div>
-    <footer id="footer">
+        
+      </div>
+      <footer id="footer">
   
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2019 Bowen He<br>
-      Powered by <a href="//hexo.io/" target="_blank">Hexo</a>
-      .
-      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
-  </div>
-  <nav id="mobile-nav">
+    </div>
+    <nav id="mobile-nav">
   
     <a href="/" class="mobile-nav-link">Home</a>
   
     <a href="/archives" class="mobile-nav-link">Archives</a>
   
 </nav>
-  <!-- totop start -->
-<div id="totop">
-<a title="totop"><img src="/img/scrollup.png"/></a>
-</div>
-
-<!-- totop end -->
-
-<!-- 多说公共js代码 start -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"reqianduan"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0]
-     || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-  </script>
-<!-- 多说公共js代码 end -->
-
-
-<!-- 百度分享 start -->
-
-<div id="article-share-box" class="article-share-box">
-  <div id="bdshare" class="bdsharebuttonbox article-share-links">
-    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
-    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
-    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
-    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
-    <a class="article-share-more" data-cmd="more" title="更多"></a>
-  </div>
-</div>
-<script>
-  function SetShareData(cmd, config) {
-    if (shareDataTitle && shareDataUrl) {
-      config.bdText = shareDataTitle;
-      config.bdUrl = shareDataUrl;
-    }
-    return config;
-  }
-  window._bd_share_config={
-    "common":{onBeforeClick: SetShareData},
-    "share":{"bdCustomStyle":"/css/bdshare.css"}
-  };
-  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
-</script>
-
-<!-- 百度分享 end -->
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-
-
-
-<! -- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-                processEscapes: true
-                    
-}
-  
-        });
-</script>
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-tex2jax: {
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-                  
-}
     
-        });
-</script>
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Queue(function() {
-            var all = MathJax.Hub.getAllJax(), i;
-            for(i=0; i < all.length; i += 1) {
-                            all[i].SourceElement().parentNode.className += ' has-jax';
-                                    
-            }
-                
-        });
-</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
-<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
 <script src="/js/script.js"></script>
 
-</div>
+  </div>
 </body>
 </html>
